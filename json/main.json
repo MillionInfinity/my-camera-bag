@@ -1,0 +1,36 @@
+{
+    "Items": [
+        {
+            "itemMake": "",
+            "itemModel": "",
+            "itemImageURL": "http://",
+            "itemImageFolder": "",
+            "itemCategory": "",
+            "itemSubCategory": "",
+            "itemCondition": 9,
+            "itemManualURL": "",
+            "itemSpecs": "",
+            "itemProductReviews": "",
+            "itemNotes": "",
+            "pricePerDay": 1,
+            "pricePerWeek": 1,
+            "buyNewURL": "",
+            "itemDescription":""
+        },
+        {
+            "itemMake": "Canon",
+            "itemModel": "5D Mark IV Camera Body",
+            "itemImageURL": "http://",
+            "itemCategory": "DSLR",
+            "itemSubCategory": "Camera Body",
+            "itemCondition": 9,
+            "itemManualURL": "http://gdlp01.c-wss.com/gds/0/0300024970/03/eos5d-mk4-im3-en.pdf",
+            "itemSpecs": "",
+            "itemProductReviews": "",
+            "itemNotes": "Excellent condition, built-in wifi",
+            "pricePerDay": 1,
+            "pricePerWeek": 1,
+            "buyNewURL": "",
+            "itemDescription": "Continuing on in their legacy of powerful workhorse cameras, Canon has released the 5D Mark IV DSLR which is an outstanding still photography option and an able 4K-capable video machine. This multimedia maven offers a newly developed 30.4MP full-frame CMOS sensor paired with the DIGIC 6+ image processor in order to balance fine detail and resolution with low-light performance and sensitivity. It is able to work within a native range of ISO 100-32000, which can then be expanded to an impressive ISO 50-102400, for sharp, low-noise images in a variety of conditions. Along with these improvements to image quality, users will enjoy a performance boost across the board with an enhanced AF system, built-in Wi-Fi, NFC, and GPS, and much more.
+        }
+    ]
