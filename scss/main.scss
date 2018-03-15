@@ -1,0 +1,116 @@
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+
+// Color Variables
+$colorA: #3D5A80;
+$colorB: #98C1D9;
+$colorC: #E0FBFC;
+$colorD: #EE6C4D;
+$colorE: #293241;
+
+//Font Variables
+$font1: "Roboto", san-serif;
+
+//Basic Styling
+
+body {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+    font-family: $font1;
+    height: 100vh;
+    background: linear-gradient($colorB, $colorE);
+}
+
+header { 
+   grid-row: 1;
+   grid-column: 1 /span 2;
+   display: grid;
+   grid-template-columns: 1fr auto;
+   min-height:  40px;
+}
+
+#sidebar {
+    grid-column: 1;
+    grid-row: 1 /span 2;
+    background: rgba($colorE, 0.25);
+}
+
+main {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+footer {
+    grid-row-start: 3;
+    grid-column:1 /span 2;
+    // background: $colorE;
+    color: white;
+    text-align: center;
+}
+
+//Nav bars
+
+#header-nav {
+    color: $colorC;
+    list-style-type: none;
+    grid-column: 1;
+    justify-self: end;
+    align-self: center;
+    margin-bottom: 0;
+}
+
+#logo-header {
+    padding: .5em 0 0 0;
+    grid-column: 1;
+    max-width: 90%;
+}
+
+#login-btn {
+    background: $colorD;
+    font-size: .8em;
+    padding: 0 10px 0 10px;
+}
+
+.sidebar-nav {
+    padding: 2em 0 0 0;
+}
+
+.sidebar-nav li {
+    list-style-type: none;
+    color: white;
+    text-align: center;
+}
+
+
+//Header Nav
+
+#header-nav li {
+    font-size: .8em;
+    display: inline;
+    align-self: center;
+    padding: 5px;
+    margin: 0 15px 0 15px;
+    &:before {
+        color: white;
+    }
+}
+
+//Header Nav Links
+#header-nav li a:link {
+    color: white;
+    padding: 5px;
+}
+
+#header-nav li a:visited {
+    color: white;
+    padding: 5px;
+}
+
+#header-nav li a:hover {
+    color: $colorD;
+    padding: 5px;
+    text-decoration: none;
+}
+
