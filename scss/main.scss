@@ -1,0 +1,81 @@
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+
+// Color Variables
+$colorA: #3D5A80;
+$colorB: #98C1D9;
+$colorC: #E0FBFC;
+$colorD: #EE6C4D;
+$colorE: #293241;
+
+//Font Variables
+$font1: "Roboto", san-serif;
+
+//Basic Styling
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 4fr 1fr;
+}
+
+header {
+   background: $colorA;
+   grid-row: 1;
+   grid-column: 1 /span 2;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+
+#sidebar {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    background: $colorA;
+}
+
+main {
+    grid-column: 2;
+    grid-row: 2;
+    background: $colorC;
+}
+
+footer {
+    grid-row-start: 3;
+    grid-column:1 /span 2;
+    background: $colorE;
+}
+
+//Nav bars
+
+#header-nav {
+    align-self: start;
+    color: $colorC;
+    list-style-type: none;
+    grid-column: 2;
+    justify-self: end;
+    align-self: center;
+}
+
+#header-nav li {
+    display: inline;
+    padding: 8px;
+}
+
+#header-biz-name {
+    // justify-self: start;
+    // align-self: start;
+    color: $colorC;
+    grid-column: 1;
+}
+
+// #sidebar-nav {
+// }
+
+#sidebar-nav li {
+    list-style-type: none;
+    color: white;
+    text-align: center;
+}
+
+

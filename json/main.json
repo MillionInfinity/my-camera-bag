@@ -7,30 +7,49 @@
             "itemImageFolder": "",
             "itemCategory": "",
             "itemSubCategory": "",
-            "itemCondition": 9,
             "itemManualURL": "",
             "itemSpecs": "",
             "itemProductReviews": "",
-            "itemNotes": "",
-            "pricePerDay": 1,
-            "pricePerWeek": 1,
             "buyNewURL": "",
             "itemDescription":""
         },
         {
             "itemMake": "Canon",
-            "itemModel": "5D Mark IV Camera Body",
+            "itemModel": "5D Mark IV",
             "itemImageURL": "http://",
-            "itemCategory": "DSLR",
-            "itemSubCategory": "Camera Body",
-            "itemCondition": 9,
+            "itemCategory": "Camera / Camera Body",
+            "itemSubCategory": "DLSR",
             "itemManualURL": "http://gdlp01.c-wss.com/gds/0/0300024970/03/eos5d-mk4-im3-en.pdf",
             "itemSpecs": "",
             "itemProductReviews": "",
-            "itemNotes": "Excellent condition, built-in wifi",
-            "pricePerDay": 1,
-            "pricePerWeek": 1,
             "buyNewURL": "",
-            "itemDescription": "Continuing on in their legacy of powerful workhorse cameras, Canon has released the 5D Mark IV DSLR which is an outstanding still photography option and an able 4K-capable video machine. This multimedia maven offers a newly developed 30.4MP full-frame CMOS sensor paired with the DIGIC 6+ image processor in order to balance fine detail and resolution with low-light performance and sensitivity. It is able to work within a native range of ISO 100-32000, which can then be expanded to an impressive ISO 50-102400, for sharp, low-noise images in a variety of conditions. Along with these improvements to image quality, users will enjoy a performance boost across the board with an enhanced AF system, built-in Wi-Fi, NFC, and GPS, and much more.
+            "itemDescription": "Continuing on in their legacy of powerful workhorse cameras, Canon has released the 5D Mark IV DSLR which is an outstanding still photography option and an able 4K-capable video machine. This multimedia maven offers a newly developed 30.4MP full-frame CMOS sensor paired with the DIGIC 6+ image processor in order to balance fine detail and resolution with low-light performance and sensitivity. It is able to work within a native range of ISO 100-32000, which can then be expanded to an impressive ISO 50-102400, for sharp, low-noise images in a variety of conditions. Along with these improvements to image quality, users will enjoy a performance boost across the board with an enhanced AF system, built-in Wi-Fi, NFC, and GPS, and much more."
+        },
+        {
+                "itemMake": "Canon",
+                "itemModel": "EF 50mm f/1.2L Lens",
+                "itemImageURL": "http://",
+                "itemImageFolder": "",
+                "itemCategory": "Lens",
+                "itemSubCategory": "Prime Lens",
+                "itemManualURL": "",
+                "itemSpecs": "",
+                "itemProductReviews": "",
+                "buyNewURL": "https://www.bhphotovideo.com/c/product/457680-USA/Canon_1257B002AA_Normal_EF_50mm_f_1_2L.html",
+                "itemDescription": "The EF 50mm f/1.2L USM Lens from Canon is a fast prime lens featuring a particularly large maximum aperture for effective low-light and shallow depth of field capability. As a standard focal length lens, it is suitable for most any shooting situation and its lens coating and optical construction are optimized to minimize chromatic aberrations, ghosting and flare. A truly circular diaphragm results in pleasing out-of-focus areas."
+        },
+        {
+            "itemMake": "Canon",
+            "itemModel": "EF 70-200 f/2.8L Lens",
+            "itemImageURL": "http://",
+            "itemImageFolder": "",
+            "itemCategory": "Lens",
+            "itemSubCategory": "Zoom Lens",
+            "itemManualURL": "",
+            "itemSpecs": "",
+            "itemProductReviews": "",
+            "buyNewURL": "",
+            "itemDescription": ""
         }
+
     ]
