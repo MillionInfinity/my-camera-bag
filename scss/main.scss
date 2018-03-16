@@ -1,5 +1,5 @@
 // Google Fonts
-@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+@import url('https://fonts.googleapis.com/css?family=Lato|Roboto:300');
 
 
 // Color Variables
@@ -8,9 +8,11 @@ $colorB: #98C1D9;
 $colorC: #E0FBFC;
 $colorD: #EE6C4D;
 $colorE: #293241;
+$colorF: white;
 
 //Font Variables
 $font1: "Roboto", san-serif;
+$font2: "Lato", san-serif;
 
 //Basic Styling
 
@@ -30,11 +32,17 @@ header {
    grid-template-columns: 1fr auto;
    min-height:  40px;
 }
+h1 {
+    color: $colorF;
+    font-family: $font2;
+
+}
 
 #sidebar {
     grid-column: 1;
     grid-row: 1 /span 2;
     background: rgba($colorE, 0.25);
+    font-family: $font2;
 }
 
 main {
@@ -42,11 +50,15 @@ main {
     grid-row: 2;
 }
 
+#main-div {
+    margin: 3em;
+    color: $colorF;
+}
 footer {
     grid-row-start: 3;
     grid-column:1 /span 2;
     // background: $colorE;
-    color: white;
+    color: $colorF;
     text-align: center;
 }
 
@@ -59,6 +71,7 @@ footer {
     justify-self: end;
     align-self: center;
     margin-bottom: 0;
+
 }
 
 #logo-header {
@@ -79,7 +92,7 @@ footer {
 
 .sidebar-nav li {
     list-style-type: none;
-    color: white;
+    color: $colorF;
     text-align: center;
 }
 
@@ -88,27 +101,28 @@ footer {
 
 #header-nav li {
     font-size: .8em;
+    font-family: $font2;
     display: inline;
     align-self: center;
     padding: 5px;
     margin: 0 15px 0 15px;
     &:before {
-        color: white;
+        color: $colorF;
     }
 }
 
-//Header Nav Links
-#header-nav li a:link {
-    color: white;
+//Nav Links
+a:link {
+    color: $colorF;
     padding: 5px;
 }
 
-#header-nav li a:visited {
-    color: white;
+a:visited {
+    color: $colorF;
     padding: 5px;
 }
 
-#header-nav li a:hover {
+a:hover {
     color: $colorD;
     padding: 5px;
     text-decoration: none;
