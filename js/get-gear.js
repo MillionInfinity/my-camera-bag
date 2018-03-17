@@ -37,7 +37,6 @@ function createItemCards(item) {
     document.getElementById("gear-div").appendChild(itemListDiv);
 }
 
-
 function addItem(itemFormObj) {   //this method is to add data to firebase
     return $.ajax({  // call to firebase
         url: `${firebase.getFBsettings().databaseURL}/items.json`,
@@ -49,8 +48,6 @@ function addItem(itemFormObj) {   //this method is to add data to firebase
         return itemID;
     });
 }
-
-
 
 getItems();
 createItemCards();

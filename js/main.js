@@ -3,6 +3,7 @@
 let db = require("./get-gear");
 let dom = require("./dom-builder");
 
+
 // // Using the REST API
 // function loadItemsToDOM() {
 //     console.log("Need to load some items, Bruh");
@@ -36,12 +37,12 @@ $(document).on("click", ".save_new_btn", function () {
 // Build a song obj from form data.
 function buildItemObj() {
     let itemObj = {
-        itemMake: $("#item-Make").val(),
-        itemModel: $("#item-Model").val(),
-        itemCategory: $("#item-Category").val(),
-        itemSubCategory: $("#item-SubCategory").val(),
-        manualURL: $("").val(),
-        itemDescription: $("").val()
+        itemMake: $("#itemMake-input").val(),
+        itemModel: $("#itemModel-input").val(),
+        itemCategory: $("#itemCat-input").val(),
+        itemSubCategory: $("#itemSub-input").val(),
+        manualURL: $("#manual-input").val(),
+        itemDescription: $("#desc-input").val()
         // uid: login.getUser()
     };
     return itemObj;
