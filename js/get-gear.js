@@ -5,11 +5,11 @@ console.log("get-gear.js here");
 let $ = require('jquery'),
     firebase = require("./fb-config");
 
+
 function getItems() {   //this method is to get data from firebase
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/items.json?orderBy="itemMake"`
     }).done((allItems) => {
-        console.log("allItems", allItems);
         allItems.forEach(function(item) {
         createItemCards(item);
         });
@@ -17,27 +17,42 @@ function getItems() {   //this method is to get data from firebase
 
 }
 
+
 function createItemCards(item) {
-    console.log("items", item);
     let itemCard = {
         itemMake: item ? item.itemMake : "",
         itemModel: item ? item.itemModel : "",
         itemCategory: item ? item.itemCategory : "",
         itemSubCategory: item ? item.itemSubCategory : "",
-        addItemBtnText: item ? "add to my gear" : "add to my gear",
+        addItemBtnText: item ? "add to my gear" : "",
         addItemBtnId: item ? "save_edit_btn" : "save_new_btn"
     };
-    console.log("itemCard", itemCard);
+    // console.log("itemCard", itemCard);
     let form =
-        `<h3 class="list-headline">${item.itemMake} ${item.itemModel}</h3>
-            <button id="${item.id}" class="addItem-btn">${item.addItemBtnText}</button>`;
+        `<div class="itemCard"><h4 class="list-headline">${itemCard.itemMake} ${itemCard.itemModel}</h4><button id="${itemCard.id}" class="addItem-btn">${itemCard.addItemBtnText}</button></div>`;
     let itemListDiv = document.createElement("div");
-    itemListDiv.setAttribute("id", "itemListDiv");
-    console.log("getItems with item data", item);
-    // itemListDiv.innerHTML = items.item.map(createItemCards);
-    document.getElementById("main-div").appendChild(itemListDiv);
+    itemListDiv.setAttribute("class", "itemListDiv");
+    itemListDiv.innerHTML += form;
+    // console.log("item list div", itemListDiv);
+    document.getElementById("gear-div").appendChild(itemListDiv);
 }
 
-getItems();
 
-module.exports = { getItems, createItemCards };
+function addItem(itemFormObj) {   //this method is to add data to firebase
+    return $.ajax({  // call to firebase
+        url: `${firebase.getFBsettings().databaseURL}/items.json`,
+        type: 'POST',    // This tells firebase we plan to post data to the json file
+        data: JSON.stringify(itemFormObj),
+        dataType: 'json'
+    }).done((itemID) => {
+        console.log("addItem() -> itemID", itemID);
+        return itemID;
+    });
+}
+
+
+
+getItems();
+createItemCards();
+
+module.exports = { getItems, createItemCards, addItem };

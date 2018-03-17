@@ -9,22 +9,17 @@
     <meta name="author" content="Dan Watson">
     <meta name="description" content="add content here">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
-    <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
 
 <body>
     <header>
         <ul id="header-nav">
-            <li>
-                <a href="/">HOME</a>
-            </li>
-            <li>
-                <a href="/about.html">ABOUT</a>
-            </li>
-            <li>
-                <a href="/contact.html">CONTACT</a>
-            </li>
+            <li><a href="/">HOME</a></li>
+            <li><a href="/about.html">ABOUT</a></li>
+            <li><a href="/contact.html">CONTACT</a></li>
         </ul>
         <button id="login-btn">LOGIN</button>
     </header>
@@ -33,33 +28,59 @@
         <img src="/img/my-camera-bag-logo-sm.png" id="logo-header">
 
         <ul class="sidebar-nav">
-            <li>
-                <a href="/gear.html">Browse Gear</a>
-            </li>
-            <li>
-                <a href="/bags.html">Browse Bags</a>
-            </li>
+            <li><a href="/gear.html">Browse Gear</a></li>
+            <li><a href="/bags.html">Browse Bags</a></li>
         </ul>
 
         <ul class="sidebar-nav">
-            <li>
-                <a href="user-profile.html">My Profile</a>
-            </li>
-            <li>
-                <a href="user-gear.html">My Gear</a>
-            </li>
+            <li><a href="user-profile.html">My Profile</a></li>
+            <li><a href="user-gear.html">My Gear</a></li>
             <li>My Bags</li>
         </ul>
 
     </div>
 
     <main>
-        <h1>Welcome to My Camera Bag</h1>
-        <div id="main-div">
-            <p>My Camera Bag is a tool for photographers to save lists of and reference their photography gear. Create a profile,
-                add your gear, and begin organizing your gear into 'camera bags' so you have all the info you need to help
-                you prepare for your photography shoots. Create a different bag for each different type of shoot, scenario,
-                enviorment you work with.</p>
+        <h1>Master Inventory List</h1>
+        <p>Find any items you want to include in your camera bags and add them to your My Gear page by clicking the add button.</p>
+        
+        <div>
+            <h2>Create New Item</h2>
+            <p>Is an item you are looking for not in the inventory list? Click the 'Create New Item' button to add an item to the master inventory.</p>
+            <button id="createItem-btn" type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal">Create New Item</button>
+        </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create A New Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="createItemModal" class="modal-body">
+                    <p>Item Make:</p><input type="text" name="item-Make"><br>
+                    <p>Item Model:</p><input type="text" name="item-Model"><br>
+                    <p>Item Category</p><input type="text" name="item-Category"><br>
+                    <p>Item SubCategory:</p><input type="text" name="item-SubCategory"><br>
+                    <p>Item Manual/Instructions URL:</p><input type="text" name="manualURL"><br>
+                    <p>Item Description:</p><input type="text" name="item-Description"><br>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary save_new_btn">Create Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <div id="gear-div">
+            
         </div>
     </main>
 
@@ -67,7 +88,9 @@
         <small id="copyright">All content &copy; 2018, Dan Watson</small>
     </footer>
 
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type='text/javascript' src='dist/app.js'></script>
 </body>
 

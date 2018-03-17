@@ -21,8 +21,9 @@ body {
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr auto;
     font-family: $font1;
-    height: 100vh;
+    min-height: 100vh;
     background: linear-gradient($colorB, $colorE);
+    color: $colorF;
 }
 
 header { 
@@ -92,7 +93,6 @@ footer {
 
 .sidebar-nav li {
     list-style-type: none;
-    color: $colorF;
     text-align: center;
 }
 
@@ -128,3 +128,38 @@ a:hover {
     text-decoration: none;
 }
 
+
+//Inventory Form Card Stylings
+
+#gear-div {
+    max-width: 90%;
+    align-self: center;
+    margin-left: 10px;
+}
+
+.list-headline {
+    display: inline;
+}
+
+.addItem-btn {
+    display: inline;
+}
+
+.itemCard:hover {
+    background: rgba($colorE, 0.25);
+}
+
+
+//Modal
+
+#myModal {
+    color: $colorE;
+}
+
+//button to create item
+#createItem-btn {
+    background: $colorF;
+    border: 2px solid $colorC;
+    margin: 10px;
+    font-family: $font2;
+}
