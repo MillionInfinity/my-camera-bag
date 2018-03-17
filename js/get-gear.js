@@ -10,7 +10,9 @@ function getItems() {   //this method is to get data from firebase
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/items.json?orderBy="itemMake"`
     }).done((allItems) => {
-        allItems.forEach(function(item) {
+        console.log("allItems", allItems);
+        var itemsArray = Object.values(allItems);
+        itemsArray.forEach(function(item) {
         createItemCards(item);
         });
     });
@@ -36,6 +38,7 @@ function createItemCards(item) {
     // console.log("item list div", itemListDiv);
     document.getElementById("gear-div").appendChild(itemListDiv);
 }
+
 
 function addItem(itemFormObj) {   //this method is to add data to firebase
     return $.ajax({  // call to firebase
