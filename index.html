@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>My Camera Bag Homepage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Dan Watson">
     <meta name="description" content="add content here">
-    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, web developer">
     <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
 </head>
@@ -25,27 +25,32 @@
         <img src="/img/my-camera-bag-logo-sm.png" id="logo-header">
 
         <ul class="sidebar-nav">
-            <li>Browse Bags</li>
-            <li>Search Bags</li>
+            <li><a href="/gear.html">Browse Gear</a></li>
+            <li><a href="/bags.html">Browse Bags</a></li>
         </ul>
         
         <ul class="sidebar-nav">   
-            <li>My Profile</li>
-            <li>My Gear</li>
+            <li><a href="user-profile.html">My Profile</a></li>
+            <li><a href="user-gear.html">My Gear</a></li>
             <li>My Bags</li>
         </ul>
 
     </div>
 
     <main>
-        <h2>Main Stuff Here</h2>
+        <h1>Welcome to My Camera Bag</h1>
+        <div id="main-div">
+            <p>My Camera Bag is a tool for photographers to save lists of and reference their photography gear. Create a profile, add your gear, and begin organizing your gear into 'camera bags' so you have all the info you need to help you prepare for your photography shoots. Create a different bag for each different type of shoot, scenario, enviorment you work with.</p>
+        </div>
     </main>
 
     <footer>
         <small id="copyright">All content &copy; 2018, Dan Watson</small>
     </footer>
     
-
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type='text/javascript' src='dist/app.js'></script>
 </body>
 </html>

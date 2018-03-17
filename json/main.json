@@ -1,5 +1,20 @@
-{
-    "inventoryItems": [
+{   "userItems": [
+        {
+            "itemId": ""
+        }
+        ],
+    "userBags": [
+        {
+            "user_id": ""
+        }
+    ],
+    "userBagItems": [
+        {
+            "inventoryItems_id": "",
+            "user_id": ""
+        }
+    ],
+    "items": [
         {
             "itemMake": "",
             "itemModel": "",
@@ -222,3 +237,4 @@
         }
 
     ]
+}
