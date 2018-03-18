@@ -21,7 +21,7 @@
             <li><a href="/about.html">ABOUT</a></li>
             <li><a href="/contact.html">CONTACT</a></li>
         </ul>
-        <button id="login-btn">LOGIN</button>
+        <button id="login">LOGIN</button>
     </header>
 
     <div id="sidebar">
@@ -44,9 +44,11 @@
         <h1>Master Inventory List</h1>
         <p>Find any items you want to include in your camera bags and add them to your My Gear page by clicking the add button.</p>
         
-        <div>
-            <h2>Create New Item</h2>
-            <p>Is an item you are looking for not in the inventory list? Click the 'Create New Item' button to add an item to the master inventory.</p>
+        <div id="createItemDiv">
+            <div id="createItemText">
+                <h2>Create New Item</h2>
+                <p>Is an item you are looking for not in the inventory list? Click the 'Create New Item' button to add an item to the master inventory.</p>
+            </div>
             <button id="createItem-btn" type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal">Create New Item</button>
         </div>
 
