@@ -49,6 +49,7 @@ h1 {
 main {
     grid-column: 2;
     grid-row: 2;
+    padding: 15px;
 }
 
 #main-div {
@@ -81,7 +82,7 @@ footer {
     max-width: 90%;
 }
 
-#login-btn {
+#login {
     background: $colorD;
     font-size: .8em;
     padding: 0 10px 0 10px;
@@ -132,9 +133,7 @@ a:hover {
 //Inventory Form Card Stylings
 
 #gear-div {
-    max-width: 90%;
     align-self: center;
-    margin-left: 10px;
 }
 
 .list-headline {
@@ -143,12 +142,42 @@ a:hover {
 
 .addItem-btn {
     display: inline;
+    border-radius: 4px;
+    background: $colorF;
+}
+
+.itemCard {
+    border-top: 1px solid white;
+    padding: 10px;
+
 }
 
 .itemCard:hover {
     background: rgba($colorE, 0.25);
 }
 
+//Create Item Div
+
+#createItemDiv {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+#createItemText {
+    grid-column: 1;
+
+}
+
+
+//button to create item
+#createItem-btn {
+    background: $colorF;
+    border: 2px solid $colorC;
+    font-family: $font2;
+    grid-column: 2;
+    justify-self: center;
+    align-self: center;
+}
 
 //Modal
 
@@ -156,10 +185,6 @@ a:hover {
     color: $colorE;
 }
 
-//button to create item
-#createItem-btn {
-    background: $colorF;
-    border: 2px solid $colorC;
-    margin: 10px;
-    font-family: $font2;
-}
+
+
+//Login Button

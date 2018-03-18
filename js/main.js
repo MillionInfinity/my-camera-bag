@@ -1,6 +1,9 @@
 "use strict";
 
-let db = require("./get-gear");
+let db = require("./get-gear"),
+    user = require("./user"),
+    log = require("./log"),
+    my = require("./my-gear");
 
 
 $(document).on("click", ".save_new_btn", function () {

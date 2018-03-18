@@ -31,7 +31,7 @@ function createItemCards(item) {
     };
     // console.log("itemCard", itemCard);
     let form =
-        `<div class="itemCard"><h4 class="list-headline">${itemCard.itemMake} ${itemCard.itemModel}</h4><button id="${itemCard.id}" class="addItem-btn">${itemCard.addItemBtnText}</button></div>`;
+        `<div class="itemCard"><h4 class="list-headline">${itemCard.itemMake} ${itemCard.itemModel}</h4><button id="${itemCard.id}" class="addItem-btn float-right">${itemCard.addItemBtnText}</button></div>`;
     let itemListDiv = document.createElement("div");
     itemListDiv.setAttribute("class", "itemListDiv");
     itemListDiv.innerHTML += form;
