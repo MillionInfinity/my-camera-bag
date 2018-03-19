@@ -3,7 +3,21 @@
 let db = require("./get-gear"),
     user = require("./user"),
     log = require("./log"),
-    my = require("./my-gear");
+    my = require("./my-gear"),
+    templates = require("./dom-builder");
+
+
+function loadAllItemsToDOM() {
+    console.log("need to load some items, bruh");
+    db.getItems()
+    .then((itemData) => {
+        templates.makeItemList(itemData);
+        console.log("I got items, bruh", itemData);
+
+    });
+}
+
+loadAllItemsToDOM();
 
 
 $(document).on("click", ".save_new_btn", function () {
