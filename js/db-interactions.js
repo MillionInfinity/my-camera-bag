@@ -15,8 +15,9 @@ let $ = require('jquery'),
 // PUT - Update data to a specified resource.
 
 function getFBDetails(user) {
+    console.log("user", user);
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}//user.json?orderBy="uid"&equalTo="${user}"`
+        url: `${firebase.getFBsettings().databaseURL}/user.json?orderBy="uid"&equalTo="${user}"`
     }).done((resolve) => {
         return resolve;
     }).fail((error) => {
@@ -25,6 +26,7 @@ function getFBDetails(user) {
 }
 
 function addUserFB(userObj) {
+    console.log("userObj", userObj);
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/user.json`,
         type: 'POST',
