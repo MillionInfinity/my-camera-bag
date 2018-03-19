@@ -56,6 +56,7 @@ function showUser(obj) {
 }
 
 function checkUserFB(uid) {
+    console.log("uid", uid);
     db.getFBDetails(uid)
         .then((result) => {
             let data = Object.values(result);
