@@ -12,17 +12,15 @@ function makeItemList(allItems) {
     for (let item in allItems) {
         console.log("item", item);
         let currentItem = allItems[item],
-            itemCardDiv = `<div class="itemCard panel panel-default">`,
-            itemCardHead = `<div <h4 class="list-headline panel-heading">${currentItem.itemMake} ${currentItem.itemModel}</h4>
-                            <button id="${currentItem.id}" class="addItem-btn float-right">${currentItem.addItemBtnText}</button></div>`,
-            itemCardData = `<div class="panel-body"><p>${currentItem.itemDescription}</p>
-                            <a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel}Product Manual</a></div>`;
-        console.log("itemCardHead", itemCardHead);
-        
-        $(".itemListDiv").append(itemCardDiv.append(itemCardHead));
-        $(".itemListDiv").append(itemCardDiv.append(itemCardData));
+            itemCardDiv = `<div class="itemCard panel panel-default"><div <h4 class="list-headline panel-heading">${currentItem.itemMake} ${currentItem.itemModel}</h4>
+                            <button id="${currentItem.id}" class="addItem-btn float-right">add to my gear</button></div><div class="panel-body"><p>${currentItem.itemDescription}</p>
+                            <a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel}Product Manual</a></div></div>`;
+        console.log("itemListDiv selector", $(".itemListDiv"));
+        $("#gear-div").append(itemCardDiv);
     }
 }
+
+
 
 
 function createItemCards(item, itemId) {
