@@ -32,7 +32,7 @@ $(document).on("click", ".save_new_btn", function () {
 });
 
 // Helper functions for forms stuff. Nothing related to Firebase
-// Build a song obj from form data.
+// Build an item obj from form data.
 function buildItemObj() {
     let itemObj = {
         itemMake: $("#itemMake-input").val(),
