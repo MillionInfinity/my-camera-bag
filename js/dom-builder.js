@@ -5,22 +5,20 @@ console.log("dom-builder.js is here");
 let $ = require('jquery');
 
 function makeItemList(allItems) {
-    let itemListDiv = document.createElement("div");
-    itemListDiv.setAttribute("class", "itemListDiv, panel-group");
-    document.getElementById("gear-div").appendChild(itemListDiv);
-    console.log("itemListDiv", itemListDiv);
     for (let item in allItems) {
         console.log("item", item);
         let currentItem = allItems[item],
-            itemCardDiv = `<div class="itemCard panel panel-default"><div <h4 class="list-headline panel-heading">${currentItem.itemMake} ${currentItem.itemModel}</h4>
-                            <button id="${currentItem.id}" class="addItem-btn float-right">add to my gear</button></div><div class="panel-body"><p>${currentItem.itemDescription}</p>
-                            <a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel}Product Manual</a></div></div>`;
-        console.log("itemListDiv selector", $(".itemListDiv"));
+            itemCardDiv = `<div id="${item}-card" class="itemCard panel panel-default">
+                                <div class="panel-heading">
+                                <h4 class="list-headline panel-title"><a role="button" data-toggle="collapse" data-target="#collapse-${item}" aria-expanded="true" aria-controls="div-${item}" href="#collapse-${item}">${currentItem.itemMake} ${currentItem.itemModel}</a></h4>
+                                <button id="${item}-btn" class="addItem-btn float-right">add to my gear</button></div>
+                                <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body"><p>${currentItem.itemDescription}</p>
+                                <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div></div>
+                            </div>`;
+
         $("#gear-div").append(itemCardDiv);
     }
 }
-
-
 
 
 function createItemCards(item, itemId) {
