@@ -8,27 +8,27 @@ let db = require("./get-gear"),
 
 
 function loadAllItemsToDOM() {
-    console.log("need to load some items, bruh");
     db.getItems()
-    .then((itemData) => {
-        templates.makeItemList(itemData);
-        console.log("I got items, bruh", itemData);
+        .then((itemData) => {
+            templates.makeItemList(itemData);
 
-    });
+        });
 }
 
 loadAllItemsToDOM();
 
-
+//ADD ITEM TO MASTER IVENTORY
 $(document).on("click", ".save_new_btn", function () {
-    console.log("click worked");
     let itemObj = buildItemObj();
-    db.addItem(itemObj)
-        .then((itemID) => {
-            console.log("what is from Firebase", itemID);
-            console.log("itemObj", itemObj);
-            db.createItemCards();
-        });
+    db.addItem(itemObj);
+});
+
+
+//ADD ITEM TO USER INVENTORY
+$(document).on("click", ".addItem-btn", function() {
+    console.log("this.id", this.id);
+    let userItemObj = buildUserItemObj(user.getUser(), this.id);
+    db.addUserItem(userItemObj);
 });
 
 // Helper functions for forms stuff. Nothing related to Firebase
@@ -45,3 +45,21 @@ function buildItemObj() {
     };
     return itemObj;
 }
+
+function buildUserItemObj(uid, fbID) {
+    let userItemObj = {
+        uid: uid ? uid : "",
+        fbID: fbID ? fbID : ""
+    };
+    return userItemObj;
+}
+
+
+
+//This function is to close the create item modal after submit
+// $('#submitItemButton').submit(function (e) {
+//     e.preventDefault();
+//     // Coding
+//     $('#IDModal').modal('toggle'); //or  $('#IDModal').modal('hide');
+//     return false;
+// });

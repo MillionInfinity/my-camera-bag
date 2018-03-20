@@ -28,7 +28,9 @@ firebase.auth().onAuthStateChanged((user) => {
 
 
 function getUser() {
+    console.log("currentUser.uid", currentUser.uid);
     return currentUser.uid;
+    
 }
 
 function setUser(val) {
@@ -78,6 +80,7 @@ function checkUserFB(uid) {
             } else {
                 console.log("user: already a user", data);
                 var key = Object.keys(result);
+                console.log("key", key);
                 data[0].fbID = key[0];
                 setUserVars(data[0]);
             }
