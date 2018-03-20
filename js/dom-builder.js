@@ -17,6 +17,20 @@ function makeItemList(allItems) {
     }
 }
 
+function makeUserItemList(allItems) {
+    for (let item in allItems) {
+        let currentItem = allItems[item];
+        let itemCardDiv = `<div id="${item}-card" class="itemCard panel panel-default">
+                                <div class="panel-heading">
+                                <h4 class="list-headline panel-title"><a role="button" data-toggle="collapse" data-target="#collapse-${item}" aria-expanded="true" aria-controls="div-${item}" href="#collapse-${item}">${currentItem.itemMake} ${currentItem.itemModel}</a></h4>
+                                <button id="${item}" class="addItem-btn float-right">add to my gear</button></div>
+                                <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body"><p>${currentItem.itemDescription}</p>
+                                <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div></div>
+                            </div>`;
+
+        $("#my-gear-div").append(itemCardDiv);
+    }
+}
 
 function createItemCards(item, itemId) {
     // return new Promise(function (resolve, reject) {
@@ -47,4 +61,4 @@ function createItemCards(item, itemId) {
 }
 
 
-module.exports = { makeItemList, createItemCards };
+module.exports = { makeItemList, createItemCards, makeUserItemList };

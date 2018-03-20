@@ -7,7 +7,8 @@ let $ = require('jquery'),
     firebase = require("./fb-config");
 
 
-function getItems() {   //this method is gets all items from firebase
+//GET ALL ITEMS FROM FIREBASE
+function getItems() { 
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/items.json`
     }).done((allItems) => {
@@ -16,8 +17,27 @@ function getItems() {   //this method is gets all items from firebase
 
 }
 
+getItems();
 
-function addItem(itemFormObj) {   //this method is to add an item to the master inventory in firebase
+
+//THIS GETS uid AND PASSES TO GET getUserItems WHICH GETS userItems FROM FIREBASE
+let uid = user.getUser();
+console.log("1st uid", uid);
+
+function getUserItems(uid) {
+    console.log("uid", uid);
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userItems/${uid}.json`
+    }).done((allItems) => {
+        return allItems;
+    });
+}
+
+getUserItems();
+
+
+//THIS ADDS AN ITEM TO THE MASTER INVENTORY items IN FIREBASE
+function addItem(itemFormObj) {   
     return $.ajax({ 
         url: `${firebase.getFBsettings().databaseURL}/items.json`,
         type: 'POST', 
@@ -33,22 +53,8 @@ function addItem(itemFormObj) {   //this method is to add an item to the master 
     });
 }
 
-
-getItems();
-
-
-//THIS NEEDS WORK
-// function getUserItems(uid) {
-//     return $.ajax({
-//         url: `${firebase.getFBsettings().databaseURL}/userItems/.json?equalto="uid"`
-//     }).done((allItems) => {
-//         return allItems;
-//     });
-// }
-
-
-
-function addUserItem(userItemObj) {   //this method is to add an item to the master inventory in firebase
+//THIS ADDS A userItem TO FIREBASE
+function addUserItem(userItemObj) {   
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userItems.json`,
         type: 'POST',
@@ -61,4 +67,4 @@ function addUserItem(userItemObj) {   //this method is to add an item to the mas
 }
 
 
-module.exports = { getItems, addItem, addUserItem };
+module.exports = { getItems, addItem, addUserItem, getUserItems };
