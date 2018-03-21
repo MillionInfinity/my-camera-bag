@@ -98,42 +98,40 @@ function makeUserObj(uid) {
     return userObj;
 }
 /////////////////// Login with email and password
-function emailRegister() {
-    console.log("you clicked register");
-    if ($("#email-input").val() != "" && $("#password-input").val() != "") {
-        db.createUser({
-            email: $("#email-input").val(),
-            password: $("#password-input").val()
-        })
-            .then((userData) => {
-                checkUserFB(userData.uid);
-            }, (error) => {
-                console.log("Error creating user:", error);
-            });
-    }
-}
+// function emailRegister() {
+//     console.log("you clicked register");
+//     if ($("#email-input").val() != "" && $("#password-input").val() != "") {
+//         db.createUser({
+//             email: $("#email-input").val(),
+//             password: $("#password-input").val()
+//         })
+//             .then((userData) => {
+//                 checkUserFB(userData.uid);
+//             }, (error) => {
+//                 console.log("Error creating user:", error);
+//             });
+//     }
+// }
 
-function emailLogin() {
-    console.log("you clicked email login");
-    if ($("#email-input").val() != "" && $("#password-input").val() != "") {
-        let account = {
-            email: $("#email-input").val(),
-            password: $("#password-input").val()
-        };
-        db.loginUser(account)
-            .then((userData) => {
-                checkUserFB(userData.uid);
-            }, (error) => {
-                console.log("Error with login:", error);
-            });
-    }
-}
+// function emailLogin() {
+//     console.log("you clicked email login");
+//     if ($("#email-input").val() != "" && $("#password-input").val() != "") {
+//         let account = {
+//             email: $("#email-input").val(),
+//             password: $("#password-input").val()
+//         };
+//         db.loginUser(account)
+//             .then((userData) => {
+//                 checkUserFB(userData.uid);
+//             }, (error) => {
+//                 console.log("Error with login:", error);
+//             });
+//     }
+// }
 
 
 module.exports = {
     checkUserFB,
-    emailRegister,
-    emailLogin,
     getUser,
     setUser,
     setUserVars,

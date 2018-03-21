@@ -29,36 +29,37 @@ $("#logout").click(() => {
     $("#logout").addClass("is-hidden");
 });
 
-/////// email and register
-$("#login-email").click(() => {
-    console.log("clicked login email");
-    user.emailLogin();
-});
 
-$("#register-email").click(() => {
-    console.log("clicked register");
-    user.emailRegister();
-});
+/////// email and register
+// $("#login-email").click(() => {
+//     console.log("clicked login email");
+//     user.emailLogin();
+// });
+
+// $("#register-email").click(() => {
+//     console.log("clicked register");
+//     user.emailRegister();
+// });
 //////////////////
 //change zip
-$("#change-zip").click(() => {
-    getZipCodeVal();
-});
+// $("#change-zip").click(() => {
+//     getZipCodeVal();
+// });
 
-function getZipCodeVal(event) {
-    // console.log("new zip", zipInput.val());
-    if ($("#zip-input").val() != "") {
-        let newZip = $("#zip-input").val();
-        $("#zip-input").val("");
-        //update userObj with new zip and
-        //remove temp and time from user obj
-        let updateUserObj = {
-            zipCode: newZip
-        };
-        user.setUserVars(updateUserObj)
-            .then((userObj) => {
-                console.log("main: new zip user", userObj);
-            });
-    }
-}
+// function getZipCodeVal(event) {
+//     // console.log("new zip", zipInput.val());
+//     if ($("#zip-input").val() != "") {
+//         let newZip = $("#zip-input").val();
+//         $("#zip-input").val("");
+//         //update userObj with new zip and
+//         //remove temp and time from user obj
+//         let updateUserObj = {
+//             zipCode: newZip
+//         };
+//         user.setUserVars(updateUserObj)
+//             .then((userObj) => {
+//                 console.log("main: new zip user", userObj);
+//             });
+//     }
+// }
 
