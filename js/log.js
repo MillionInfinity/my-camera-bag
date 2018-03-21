@@ -30,19 +30,6 @@ $("#logout").click(() => {
 });
 
 
-$("#auth-btn").click(function () {
-    console.log("clicked on Signin");
-    login.logInGoogle()
-        .then((result) => {
-            console.log("result from login", result.user.uid);
-            login.setUser(result.user.uid);
-            $("#auth-btn").addClass("is-hidden");
-            $("#logout").removeClass("is-hidden");
-            loadSongsToDOM();
-        });
-});
-
-
 /////// email and register
 // $("#login-email").click(() => {
 //     console.log("clicked login email");

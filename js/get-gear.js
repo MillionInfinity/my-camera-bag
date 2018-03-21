@@ -1,7 +1,5 @@
 "use strict";
 
-console.log("get-gear.js here");
-
 let $ = require('jquery'),
     user = require("./user"),
     firebase = require("./fb-config");
@@ -21,19 +19,29 @@ getItems();
 
 
 //THIS GETS uid AND PASSES TO GET getUserItems WHICH GETS userItems FROM FIREBASE
-let uid = user.getUser();
-console.log("1st uid", uid);
+// let uid = user.getUser();
 
-function getUserItems(uid) {
-    console.log("uid", uid);
+function getUserItems() {
+    let uid = user.getUser();
+    console.log("getUserItems uid", uid);
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userItems/${uid}.json`
+        url: `${firebase.getFBsettings().databaseURL}/userItems.json?orderBy="uid"&equalTo="${uid}"`
     }).done((allItems) => {
+        console.log("users allItems", allItems);
         return allItems;
     });
 }
 
 getUserItems();
+
+function getMatchedItems(fbID) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/items.json?orderBy="fbId"&equalTo="${fbID}"`
+    }).done((allItems) => {
+        console.log("users allItems", allItems);
+        return allItems;
+    });
+}
 
 
 //THIS ADDS AN ITEM TO THE MASTER INVENTORY items IN FIREBASE
@@ -44,7 +52,6 @@ function addItem(itemFormObj) {
         data: JSON.stringify(itemFormObj),
         dataType: 'json'
         }).done((itemID) => {
-        console.log("addItem() -> itemID", itemID);
         return itemID;
     //can I do a .then reload data?? run getItems again?
     // }).then function getItems(allItems) {
@@ -67,4 +74,4 @@ function addUserItem(userItemObj) {
 }
 
 
-module.exports = { getItems, addItem, addUserItem, getUserItems };
+module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems };

@@ -17,20 +17,20 @@ function makeItemList(allItems) {
     }
 }
 
-function makeUserItemList(allItems) {
-    for (let item in allItems) {
-        let currentItem = allItems[item];
-        let itemCardDiv = `<div id="${item}-card" class="itemCard panel panel-default">
-                                <div class="panel-heading">
-                                <h4 class="list-headline panel-title"><a role="button" data-toggle="collapse" data-target="#collapse-${item}" aria-expanded="true" aria-controls="div-${item}" href="#collapse-${item}">${currentItem.itemMake} ${currentItem.itemModel}</a></h4>
-                                <button id="${item}" class="addItem-btn float-right">add to my gear</button></div>
-                                <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body"><p>${currentItem.itemDescription}</p>
-                                <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div></div>
-                            </div>`;
+// function makeUserItemList(allItems) {
+//     for (let item in allItems) {
+//         let currentItem = allItems[item];
+//         let itemCardDiv = `<div id="${item}-card" class="itemCard panel panel-default">
+//                                 <div class="panel-heading">
+//                                 <h4 class="list-headline panel-title"><a role="button" data-toggle="collapse" data-target="#collapse-${item}" aria-expanded="true" aria-controls="div-${item}" href="#collapse-${item}">${currentItem.itemMake} ${currentItem.itemModel}</a></h4>
+//                                 <button id="${item}" class="addItem-btn float-right">add to my gear</button></div>
+//                                 <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body"><p>${currentItem.itemDescription}</p>
+//                                 <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div></div>
+//                             </div>`;
 
-        $("#my-gear-div").append(itemCardDiv);
-    }
-}
+//         $("#my-gear-div").append(itemCardDiv);
+//     }
+// }
 
 function createItemCards(item, itemId) {
     // return new Promise(function (resolve, reject) {
@@ -61,4 +61,49 @@ function createItemCards(item, itemId) {
 }
 
 
-module.exports = { makeItemList, createItemCards, makeUserItemList };
+function fillHomeIntro() {
+    let homeIntro = `<div id="intro-div"><h1 id="intro-header">Welcome to My Camera Bag</h1>
+                        <p id="intro-p">My Camera Bag is a tool for photographers to organize and reference their photography gear. Login with your Google Account and begin sorting your gear into 'camera bags' so you have all the info you need to help you prepare for your photography shoots. Create a different bag for each different type of shoot, scenario, enviorment you work with.</p>
+                    </div>`;
+    $("#intro-div").append(homeIntro);
+}
+
+function fillCreateItemDiv() {
+    let createItemDiv = `<div id="createItemDiv">
+                            <div id="createItemText">
+                                <h2>Create New Item</h2>
+                                <p>Is an item you are looking for not in the inventory list? Click the 'Create New Item' button to add an item to the master inventory.</p>
+                            </div>
+                        <button id="createItem-btn" type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal">Create New Item</button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Create A New Item</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form id="createItemModal" class="modal-body">
+                                        <label>Item Make:</label><input type="text" name="item-Make" id="itemMake-input"><br>
+                                        <label>Item Model:</label><input type="text" name="item-Model" id="itemModel-input"><br>
+                                        <label>Item Category</label><input type="text" name="item-Category" id="itemCat-input"><br>
+                                        <label>Item SubCategory:</label><input type="text" name="item-SubCategory" id="itemSub-input"><br>
+                                        <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="manual-input"><br>
+                                        <label>Item Description:</label><input type="text" name="item-Description" id="desc-input"><br>
+
+                                    </form>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" id="submitItemBtn" class="btn btn-primary save_new_btn">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+    $("#secondary-div").append(createItemDiv);
+}
+
+module.exports = { makeItemList, createItemCards, fillHomeIntro, fillCreateItemDiv };
