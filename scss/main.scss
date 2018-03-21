@@ -86,12 +86,14 @@ footer {
     background: $colorD;
     font-size: .8em;
     padding: 0 10px 0 10px;
+    cursor: pointer;
 }
 
 #logout {
     background: $colorD;
     font-size: .8em;
     padding: 0 10px 0 10px;
+    cursor: pointer;
 }
 
 .sidebar-nav {
@@ -121,6 +123,21 @@ footer {
 }
 
 //Nav Links
+
+li:link {
+    color: $colorF;
+}
+
+li:visited {
+    color: $colorF;
+}
+
+li:hover {
+    color: $colorD;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 a:link {
     color: $colorF;
     padding: 5px;
@@ -135,8 +152,8 @@ a:hover {
     color: $colorD;
     padding: 5px;
     text-decoration: none;
+    cursor: pointer;
 }
-
 
 //Inventory Form Card Stylings
 
@@ -152,6 +169,7 @@ a:hover {
     display: inline;
     border-radius: 4px;
     background: $colorF;
+    cursor: pointer;
 }
 
 .itemCard {
