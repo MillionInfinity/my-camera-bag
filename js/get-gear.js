@@ -2,8 +2,10 @@
 
 let $ = require('jquery'),
     user = require("./user"),
+    // templates = require('./dom-builder'),
     firebase = require("./fb-config");
 
+let myGearArr = [];
 
 //GET ALL ITEMS FROM FIREBASE
 function getItems() { 
@@ -17,13 +19,29 @@ function getItems() {
 
 getItems();
 
+//GET allBags
+function getAllBags() {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userBags.json`
+    }).done((allItems) => {
+        return allItems;
+    });
+}
+
+//GET userBags
+function getUserBags(uid) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userBags.json`
+    }).done((allItems) => {
+        return allItems;
+    });
+
+}
 
 //THIS GETS uid AND PASSES TO GET getUserItems WHICH GETS userItems FROM FIREBASE
-// let uid = user.getUser();
 
 function getUserItems() {
     let uid = user.getUser();
-    console.log("getUserItems uid", uid);
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userItems.json?orderBy="uid"&equalTo="${uid}"`
     }).done((allItems) => {
@@ -32,16 +50,31 @@ function getUserItems() {
     });
 }
 
-getUserItems();
 
-function getMatchedItems(fbID) {
+function ajaxCalls(passedItem){
+    console.log("passed item", passedItem);
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/items.json?orderBy="fbId"&equalTo="${fbID}"`
-    }).done((allItems) => {
-        console.log("users allItems", allItems);
-        return allItems;
+        url: `${firebase.getFBsettings().databaseURL}/items/${passedItem.fbID}.json?`
+    }).done((item) => {
+        console.log("users item", item);
+        myGearArr.push(item);
+        return item;
     });
 }
+
+
+function getMatchedItems(array) {
+        console.log("getMatchedItems here", array);
+        let promiseArr = [];
+        for (var i = 0; i < array.length; i++) {
+            console.log("array[i]", array[i]);
+            promiseArr.push(ajaxCalls(array[i])); 
+        }
+        return Promise.all(promiseArr);
+}
+
+
+// getMatchedItems(getUserItems());
 
 
 //THIS ADDS AN ITEM TO THE MASTER INVENTORY items IN FIREBASE
@@ -73,5 +106,19 @@ function addUserItem(userItemObj) {
     });
 }
 
+//THIS ADDS A userItems TO A userBags
+function addItemtoBag (userBagObj) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userBags.json`,
+        type: 'POST',
+        data: JSON.stringify(userBagObj),
+        dataType: 'json'
+    }).done((userBagObj) => {
+        console.log("addItemtoBag() -> itemObj", userBagObj);
+        return userBagObj;
+    });
 
-module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems };
+}
+
+
+module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags };
