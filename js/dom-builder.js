@@ -40,7 +40,7 @@ function makeModalUserItemList(items) {
         itemCardDiv += `<div id="${item}-card" class="itemCard panel panel-default">
                             <div class="panel-heading">
                             <h4 class="list-headline panel-title"><a role="button" data-toggle="collapse" data-target="#collapse-${item}" aria-expanded="true" aria-controls="div-${item}" href="#collapse-${item}">${currentItem.itemMake} ${currentItem.itemModel}</a></h4>
-                            <button id="${item}" type="button" class="btn btn-outline-light float-right" data-toggle="modal" data-target="#myEditItemModal">options</button></div>
+                            <button id="${item}" type="button" class="btn options-btn btn-outline-light float-right" data-toggle="modal" data-target="#myEditItemModal">options</button></div>
                             <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body"><p>${currentItem.itemDescription}</p>
                             <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div></div></div>
                         </div>

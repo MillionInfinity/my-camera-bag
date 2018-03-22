@@ -161,21 +161,36 @@ a:hover {
     align-self: center;
 }
 
-.list-headline {
-    display: inline;
+.list-headline { 
+    grid-column: 1;
+    align-self: center;
+    margin: 0;
 }
 
 .addItem-btn {
-    display: inline;
     border-radius: 4px;
     cursor: pointer;
-    justify-self: center;
+    justify-self: right;
+    grid-column: 2;
+    align-self: center;
+}
+
+.panel-heading {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.options-btn {
+    cursor: pointer;
+    justify-self: right;
+    grid-column: 2;
+    align-self: center;
+    margin: 0;
 }
 
 .itemCard {
     border-top: 1px solid white;
     padding: 10px;
-
 }
 
 .itemCard:hover {
@@ -199,7 +214,7 @@ a:hover {
 #createItem-btn {
     font-family: $font2;
     grid-column: 2;
-    justify-self: center;
+    justify-self: right;
     align-self: center;
 }
 
