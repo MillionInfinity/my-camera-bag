@@ -45,18 +45,15 @@ function getUserItems() {
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userItems.json?orderBy="uid"&equalTo="${uid}"`
     }).done((allItems) => {
-        console.log("users allItems", allItems);
         return allItems;
     });
 }
 
 
 function ajaxCalls(passedItem){
-    console.log("passed item", passedItem);
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/items/${passedItem.fbID}.json?`
     }).done((item) => {
-        console.log("users item", item);
         myGearArr.push(item);
         return item;
     });
@@ -64,10 +61,8 @@ function ajaxCalls(passedItem){
 
 
 function getMatchedItems(array) {
-        console.log("getMatchedItems here", array);
         let promiseArr = [];
         for (var i = 0; i < array.length; i++) {
-            console.log("array[i]", array[i]);
             promiseArr.push(ajaxCalls(array[i])); 
         }
         return Promise.all(promiseArr);
@@ -120,5 +115,25 @@ function addItemtoBag (userBagObj) {
 
 }
 
+function deleteUserItem(userItemId) {
+    console.log("delete userItemId", userItemId);
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userItems/${userItemId}.json`,
+        method: "DELETE"
+    }).done((data) => {
+        return data;
+    });
+}
 
-module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags };
+function editUserItem(userItemObj, userItemId) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userItems/${userItemId}.json`,
+        type: 'PUT',
+        data: JSON.stringify(userItemObj)
+    }).done((data) => {
+        return data;
+    });
+}
+
+
+module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags, deleteUserItem };
