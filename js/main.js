@@ -125,6 +125,7 @@ function buildItemObj(fbID) {
         itemCategory: item.itemCategory ? item.itemCategory : $("#itemCat-input").val(),
         itemSubCategory: item.itemSubCategory ? item.itemSubCategory : $("#itemSub-input").val(),
         itemImageURL: item.itemImageURL ? item.itemImageURL : $("#imageURL-input").val(),
+        buyNewURL: item.buyNewURL ? item.buyNewURL : $("#buyNew-input").val(),
         manualURL: item.manualURL ? item.manualURL : $("#manual-input").val(),
         itemDescription: item.itemDescription ? item.itemDescription : $("#desc-input").val()
     };

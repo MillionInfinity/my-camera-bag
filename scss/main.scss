@@ -184,11 +184,15 @@ a:hover {
 .itemCard {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 4fr 1fr 1fr;
-    border: 1px solid $black;
+    grid-template-rows: 4fr 1fr 1fr 1fr;
+    // border: 1px solid $black;
     padding: 5px;
     margin: 10px;
-    max-width: 200px;
+    max-width: 225px;
+    border-radius: 4px;
+    webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 7px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 7px rgba(0,0,0,0.75);
     
 
 }
@@ -209,6 +213,7 @@ a:hover {
     grid-column: 1 / span 3;
     grid-row: 2;
     align-self: center;
+    justify-self: center;
     margin: 0;
     font-size: 1em;
 }
@@ -216,12 +221,28 @@ a:hover {
 .addItem-btn {
     border-radius: 4px;
     cursor: pointer;
-    justify-self: right;
-    grid-column: 1;
+    justify-self: center;
+    grid-column: 1 / span 3;
     grid-row: 3;
     align-self: center;
 }
 
+.modal-body {
+    padding: 15px;
+}
+
+.modal-image {
+    max-width: 200px;
+    float: right;
+    margin-bottom: 5px;
+    webkit-box-shadow: 3px 3px 7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 7px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 7px rgba(0,0,0,0.75);
+}
+
+.infoModal-h5 {
+    text-decoration: underline;
+}
 
 .editItem-btn {
     border-radius: 4px;
@@ -238,6 +259,15 @@ a:hover {
     justify-self: right;
     grid-column: 3;
     grid-row: 3;
+    align-self: center;
+}
+
+.info-btn {
+    border-radius: 4px;
+    cursor: pointer;
+    justify-self: center;
+    grid-column: 1 / span 3;
+    grid-row: 4;
     align-self: center;
 }
 //Create Item Div

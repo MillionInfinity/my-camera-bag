@@ -7,18 +7,78 @@ function makeItemList(allItems) {
         let currentItem = allItems[item];
         let itemCardDiv = `<div class="itemCard-wrap">
                                 <div id="${item}-card" class="itemCard">
-                                <img src="${currentItem.itemImageURL}" class="listImage" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
-                                <h4 class="list-headline panel-title"><a role="button" data-toggle="collapse" data-target="#collapse-${item}" aria-expanded="true" aria-controls="div-${item}" href="#collapse-${item}">${currentItem.itemMake} ${currentItem.itemModel}</a></h4>
-                                <button id="${item}" class="deleteItem-btn btn-sm btn btn-outline-secondary">delete item</button>
-                                <button id="${item}" class="addItem-btn btn btn-sm btn-outline-secondary">add to my gear</button></div>
-                                <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body">
-                                <br><p>${currentItem.itemDescription}</p>
-                                <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div>
-                                <button id="${item}" data-toggle="modal" data-target="#editItemModal"class="btn btn-outline-light">edit item</button></div>
+                                    <img src="${currentItem.itemImageURL}" class="listImage" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
+                                    <h4 class="list-headline">${currentItem.itemMake} ${currentItem.itemModel}</h4>
+                                    <button id="${item}" class="addItem-btn btn btn-outline-secondary">Add Item To My Gear</button>
+                                    <button id="${item}-infobtn" class="info-btn btn  btn btn-outline-secondary" data-toggle="modal" data-target="#${item}-infoModal">More Info</button>
                                 </div>
                             </div>
+
+                            <!-- More Info Modal -->
+                            <div class="modal fade modalStyle" id="${item}-infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="modal-title" id="exampleModalLabel">
+                                            <h4>${currentItem.itemMake} ${currentItem.itemModel}</h4>
+                                            <small>Item Category: ${currentItem.itemCategory}: ${currentItem.itemSubCategory}</small>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                        <img src="${currentItem.itemImageURL}" class="modal-image" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
+                                        <h5 class="infoModal-h5">Item Description</h5>
+                                        <p>${currentItem.itemDescription}:</p></div>
+                                        <a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a>
+                                        
+                                    </div>
+                                        
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-success" href="${currentItem.buyNewURL}" "target="_blank">Buy New</a>
+                                        <button type="button" id="${item}" class="btn btn-danger deleteItem-btn" data-dismiss="modal">Delete</button>
+                                        <button id="${item}" data-toggle="modal" data-target="#editItemModal" class="btn btn-success" data-dismiss="modal">Edit Item</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                                    <!-- Edit Item Modal -->
+                            <div class="modal fade modalStyle" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Your Item</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                        <form id="itemModalForm" class="modal-body">
+
+                                            <label>Item Make:</label><input type="text" class="modal-input" name="${currentItem.itemMake}" value="${currentItem.itemMake}" id="itemMake-input"><br>
+                                            <label>Item Model:</label><input type="text" class="modal-input" name="${currentItem.itemModel}" value="${currentItem.itemModel}"id="itemModel-input"><br>
+                                            <label>Item Category</label><input type="text" class="modal-input" name="${currentItem.itemCategory}" value="${currentItem.itemCategory}" id="itemCat-input"><br>
+                                            <label>Item SubCategory:</label><input type="text" class="modal-input" name="${currentItem.itemSubCategory}" value="${currentItem.itemSubCategory}" id="itemSub-input"><br>
+                                            <label>Buy New URL:</label><input type="text" class="modal-input" name="${currentItem.buyNewURL}" value="${currentItem.buyNewURL}" id="buyNew-input"><br>
+                                            <label>Item Manual/Instructions URL:</label><input type="text" class="modal-input" name="${currentItem.itemManualURL}" value="${currentItem.itemManualURL}" id="manual-input"><br>
+                                            <label>Item Description:</label><input type="text" class="modal-input" name="${currentItem.itemDescription}" value="${currentItem.itemDescription}" id="desc-input"><br>
+                                            
+                                        </form>
+                                    <div class="modal-footer">
+                                        <button type="button" id="${item}" class="btn btn-secondary deleteItem-btn">Delete</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" id="${item}" class="btn btn-primary submitEdit-btn" data-dismiss="modal">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                                        
                             
-                            <!-- Modal -->
+                            <!-- Edit Item Modal -->
                             <div class="modal fade modalStyle" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
