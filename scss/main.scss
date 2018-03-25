@@ -9,6 +9,7 @@ $colorC: #E0FBFC;
 $colorD: #EE6C4D;
 $colorE: #293241;
 $colorF: white;
+$black: black;
 
 //Font Variables
 $font1: "Roboto", san-serif;
@@ -22,8 +23,8 @@ body {
     grid-template-rows: auto 1fr auto;
     font-family: $font1;
     min-height: 100vh;
-    background: linear-gradient($colorB, $colorE);
-    color: $colorF;
+    background: $colorF;
+    color: $black;
 }
 
 header { 
@@ -32,9 +33,10 @@ header {
    display: grid;
    grid-template-columns: 1fr auto;
    min-height:  40px;
+   color: $black;
 }
 h1 {
-    color: $colorF;
+    color: $black;
     font-family: $font2;
 
 }
@@ -52,22 +54,23 @@ main {
     padding: 15px;
 }
 
-#main-div {
-    margin: 3em;
-    color: $colorF;
-}
+// #main-div {
+//     margin: 3em;
+//     color: $colorF;
+// }
+
 footer {
     grid-row-start: 3;
     grid-column:1 /span 2;
     // background: $colorE;
-    color: $colorF;
+    color: $black;
     text-align: center;
 }
 
 //Nav bars
 
 #header-nav {
-    color: $colorC;
+    color: $black;
     list-style-type: none;
     grid-column: 1;
     justify-self: end;
@@ -125,11 +128,11 @@ footer {
 //Nav Links
 
 li:link {
-    color: $colorF;
+    color: $black;
 }
 
 li:visited {
-    color: $colorF;
+    color: $black;
 }
 
 li:hover {
@@ -139,12 +142,12 @@ li:hover {
 }
 
 a:link {
-    color: $colorF;
+    color: $black;
     padding: 5px;
 }
 
 a:visited {
-    color: $colorF;
+    color: $black;
     padding: 5px;
 }
 
@@ -158,43 +161,13 @@ a:hover {
 //Inventory Form Card Stylings
 
 #gear-div {
-    align-self: center;
+    align-items: center;
+    justify-items: center;
 }
 
-.list-headline { 
-    grid-column: 1;
-    align-self: center;
-    margin: 0;
-}
-
-.addItem-btn {
-    border-radius: 4px;
-    cursor: pointer;
-    justify-self: right;
-    grid-column: 2;
-    align-self: center;
-}
-
-.editItem-btn {
-    border-radius: 4px;
-    cursor: pointer;
-    justify-self: right;
-    grid-column: 2;
-    align-self: center;
-}
-
-.deleteItem-btn {
-    border-radius: 4px;
-    cursor: pointer;
-    justify-self: right;
-    grid-column: 2;
-    align-self: center;
-}
-
-.panel-heading {
-    display: grid;
-    grid-template-columns: auto auto;
-}
+// .panel-heading {
+//     display: inline-block;
+// }
 
 .options-btn {
     cursor: pointer;
@@ -204,15 +177,69 @@ a:hover {
     margin: 0;
 }
 
+.itemCard-wrap {
+    display: inline-block;
+}
+
 .itemCard {
-    border-top: 1px solid white;
-    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 4fr 1fr 1fr;
+    border: 1px solid $black;
+    padding: 5px;
+    margin: 10px;
+    max-width: 200px;
+    
+
 }
 
-.itemCard:hover {
-    background: rgba($colorE, 0.25);
+// .itemCard:hover {
+//     background: rgba($colorE, 0.25);
+// }
+
+.listImage {
+    max-width: 80%;
+    grid-column: 1 / span 3;
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
 }
 
+.list-headline { 
+    grid-column: 1 / span 3;
+    grid-row: 2;
+    align-self: center;
+    margin: 0;
+    font-size: 1em;
+}
+
+.addItem-btn {
+    border-radius: 4px;
+    cursor: pointer;
+    justify-self: right;
+    grid-column: 1;
+    grid-row: 3;
+    align-self: center;
+}
+
+
+.editItem-btn {
+    border-radius: 4px;
+    cursor: pointer;
+    justify-self: right;
+    grid-column: 2;
+    grid-row: 3; 
+    align-self: center;
+}
+
+.deleteItem-btn {
+    border-radius: 4px;
+    cursor: pointer;
+    justify-self: right;
+    grid-column: 3;
+    grid-row: 3;
+    align-self: center;
+}
 //Create Item Div
 
 #createItemDiv {

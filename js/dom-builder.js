@@ -5,15 +5,17 @@ let $ = require('jquery');
 function makeItemList(allItems) {
     for (let item in allItems) {
         let currentItem = allItems[item];
-        let itemCardDiv = `<div id="${item}-card" class="itemCard panel panel-default">
-                                <div class="panel-heading">
+        let itemCardDiv = `<div class="itemCard-wrap">
+                                <div id="${item}-card" class="itemCard">
+                                <img src="${currentItem.itemImageURL}" class="listImage" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
                                 <h4 class="list-headline panel-title"><a role="button" data-toggle="collapse" data-target="#collapse-${item}" aria-expanded="true" aria-controls="div-${item}" href="#collapse-${item}">${currentItem.itemMake} ${currentItem.itemModel}</a></h4>
-                                <button id="${item}" class="deleteItem-btn btn btn-outline-light">delete item</button>
-                                <button id="${item}" class="addItem-btn btn btn-outline-light">add to my gear</button></div>
+                                <button id="${item}" class="deleteItem-btn btn-sm btn btn-outline-secondary">delete item</button>
+                                <button id="${item}" class="addItem-btn btn btn-sm btn-outline-secondary">add to my gear</button></div>
                                 <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body">
                                 <br><p>${currentItem.itemDescription}</p>
                                 <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div>
-                                <button id="${item}" data-toggle="modal" data-target="#editItemModal"class="btn btn-outline-light">edit item</button></div></div>
+                                <button id="${item}" data-toggle="modal" data-target="#editItemModal"class="btn btn-outline-light">edit item</button></div>
+                                </div>
                             </div>
                             
                             <!-- Modal -->
@@ -134,7 +136,7 @@ function fillCreateItemDiv() {
                                 <h2>Create New Item</h2>
                                 <p>Is an item you are looking for not in the inventory list? Click the 'Create New Item' button to add an item to the master inventory.</p>
                             </div>
-                        <button id="createItem-btn" type="button" class="btn btn-lg btn btn-outline-light" data-toggle="modal" data-target="#EditItem">Create New Item</button>
+                        <button id="createItem-btn" type="button" class="btn btn-lg btn btn-outline-secondary" data-toggle="modal" data-target="#EditItem">Create New Item</button>
                         </div>
 
                         <!-- Modal -->
@@ -152,6 +154,7 @@ function fillCreateItemDiv() {
                                         <label>Item Model:</label><input type="text" name="item-Model" id="itemModel-input"><br>
                                         <label>Item Category</label><input type="text" name="item-Category" id="itemCat-input"><br>
                                         <label>Item SubCategory:</label><input type="text" name="item-SubCategory" id="itemSub-input"><br>
+                                        <label>Item Image URL:</label><input type="text" name="imageURL" id="imageURL-input"><br>
                                         <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="manual-input"><br>
                                         <label>Item Description:</label><input type="text" name="item-Description" id="desc-input"><br>
 

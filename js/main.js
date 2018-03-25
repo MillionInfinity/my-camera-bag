@@ -124,6 +124,7 @@ function buildItemObj(fbID) {
         itemModel: item.itemModel ? item.itemModel : $("#itemModel-input").val(),
         itemCategory: item.itemCategory ? item.itemCategory : $("#itemCat-input").val(),
         itemSubCategory: item.itemSubCategory ? item.itemSubCategory : $("#itemSub-input").val(),
+        itemImageURL: item.itemImageURL ? item.itemImageURL : $("#imageURL-input").val(),
         manualURL: item.manualURL ? item.manualURL : $("#manual-input").val(),
         itemDescription: item.itemDescription ? item.itemDescription : $("#desc-input").val()
     };
@@ -140,6 +141,7 @@ function buildUserItemObj(uid, fbID) {
         itemModel: item.itemModel ? item.itemModel : "",
         itemCategory: item.itemCategory ? item.itemCategory : "",
         itemSubCategory: item.itemSubCategory ? item.itemSubCategory : "",
+        itemImageURL: item.itemImageURL ? item.itemImageURL : "",
         manualURL: item.manualURL ? item.manualURL : "",
         itemDescription: item.itemDescription ? item.itemDescription : "",
         uid: uid ? uid : "",
