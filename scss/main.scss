@@ -175,6 +175,22 @@ a:hover {
     align-self: center;
 }
 
+.editItem-btn {
+    border-radius: 4px;
+    cursor: pointer;
+    justify-self: right;
+    grid-column: 2;
+    align-self: center;
+}
+
+.deleteItem-btn {
+    border-radius: 4px;
+    cursor: pointer;
+    justify-self: right;
+    grid-column: 2;
+    align-self: center;
+}
+
 .panel-heading {
     display: grid;
     grid-template-columns: auto auto;
@@ -209,6 +225,10 @@ a:hover {
 
 }
 
+
+.modal-input {
+    width: 100%;
+}
 
 //button to create item
 #createItem-btn {

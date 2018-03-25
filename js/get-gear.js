@@ -1,5 +1,7 @@
 "use strict";
 
+console.log("get-gear here");
+
 let $ = require('jquery'),
     user = require("./user"),
     // templates = require('./dom-builder'),
@@ -19,6 +21,18 @@ function getItems() {
 
 getItems();
 
+
+//GET A SINGLE ITEM FROM ITEMS
+function getSingleItem(fbID) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/items/${fbID}.json`
+    }).done((item) => {
+        console.log("getSingleItem item", item);
+        return item;
+    });
+}
+
+
 //GET allBags
 function getAllBags() {
     return $.ajax({
@@ -35,13 +49,14 @@ function getUserBags(uid) {
     }).done((allItems) => {
         return allItems;
     });
-
 }
 
 //THIS GETS uid AND PASSES TO GET getUserItems WHICH GETS userItems FROM FIREBASE
 
-function getUserItems() {
-    let uid = user.getUser();
+
+function getUserItems(uid) {
+    uid = user.getUser();
+    console.log("getUserItems uid", uid);
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userItems.json?orderBy="uid"&equalTo="${uid}"`
     }).done((allItems) => {
@@ -115,6 +130,17 @@ function addItemtoBag (userBagObj) {
 
 }
 
+function deleteItem(itemId) {
+    console.log("delete itemId", itemId);
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/items/${itemId}.json`,
+        method: "DELETE"
+    }).done((data) => {
+        return data;
+    });
+}
+
+
 function deleteUserItem(userItemId) {
     console.log("delete userItemId", userItemId);
     return $.ajax({
@@ -125,10 +151,23 @@ function deleteUserItem(userItemId) {
     });
 }
 
+
+function editItem(itemObj, itemId) {
+    console.log("editItem itemObj", itemObj);
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/items/${itemId}/.json`,
+        type: 'PUT',
+        data: JSON.stringify(itemObj)
+    }).done((data) => {
+        return data;
+    });
+}
+
+
 function editUserItem(userItemObj, userItemId) {
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userItems/${userItemId}.json`,
-        type: 'PUT',
+        url: `${firebase.getFBsettings().databaseURL}/userItems/${userItemId}/.json`,
+        type: 'PATCH',
         data: JSON.stringify(userItemObj)
     }).done((data) => {
         return data;
@@ -136,4 +175,4 @@ function editUserItem(userItemObj, userItemId) {
 }
 
 
-module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags, deleteUserItem };
+module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags, deleteUserItem, getSingleItem, deleteItem, editItem };

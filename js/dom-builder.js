@@ -8,10 +8,42 @@ function makeItemList(allItems) {
         let itemCardDiv = `<div id="${item}-card" class="itemCard panel panel-default">
                                 <div class="panel-heading">
                                 <h4 class="list-headline panel-title"><a role="button" data-toggle="collapse" data-target="#collapse-${item}" aria-expanded="true" aria-controls="div-${item}" href="#collapse-${item}">${currentItem.itemMake} ${currentItem.itemModel}</a></h4>
-                                <button id="${item}" class="addItem-btn btn btn-outline-light float-right">add to my gear</button></div>
-                                <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body"><p>${currentItem.itemDescription}</p>
-                                <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div></div></div>
-                            </div>`;
+                                <button id="${item}" class="deleteItem-btn btn btn-outline-light">delete item</button>
+                                <button id="${item}" class="addItem-btn btn btn-outline-light">add to my gear</button></div>
+                                <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body">
+                                <br><p>${currentItem.itemDescription}</p>
+                                <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div>
+                                <button id="${item}" data-toggle="modal" data-target="#editItemModal"class="btn btn-outline-light">edit item</button></div></div>
+                            </div>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade modalStyle" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Your Item</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                        <form id="itemModalForm" class="modal-body">
+
+                                            <label>Item Make:</label><input type="text" class="modal-input" name="${currentItem.itemMake}" value="${currentItem.itemMake}" id="itemMake-input"><br>
+                                            <label>Item Model:</label><input type="text" class="modal-input" name="${currentItem.itemModel}" value="${currentItem.itemModel}"id="itemModel-input"><br>
+                                            <label>Item Category</label><input type="text" class="modal-input" name="${currentItem.itemCategory}" value="${currentItem.itemCategory}" id="itemCat-input"><br>
+                                            <label>Item SubCategory:</label><input type="text" class="modal-input" name="${currentItem.itemSubCategory}" value="${currentItem.itemSubCategory}" id="itemSub-input"><br>
+                                            <label>Item Manual/Instructions URL:</label><input type="text" class="modal-input" name="${currentItem.itemManualURL}" value="${currentItem.itemManualURL}" id="manual-input"><br>
+                                            <label>Item Description:</label><input type="text" class="modal-input" name="${currentItem.itemDescription}" value="${currentItem.itemDescription}" id="desc-input"><br>
+                                            
+                                        </form>
+                                    <div class="modal-footer">
+                                        <button type="button" id="${item}" class="btn btn-secondary deleteItem-btn">Delete</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" id="${item}" class="btn btn-primary submitEdit-btn" data-dismiss="modal">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
 
         $("#gear-div").append(itemCardDiv);
     }
@@ -50,33 +82,26 @@ function makeModalUserItemList(items) {
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Create A New Item</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Your Item</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                         <form id="userItemModalForm" class="modal-body">
-                                            <label>Add To Bag:</label><select name="Add Item To Bag">
-                                                <option value="">Portrait Bag</option>
-                                                <option value="">Wedding Bag</option>
-                                                <option value="">Rainy Wedding Bag</option>
-                                                <option value="">Night Landscape Bag</option>
-                                                <option value="">Drone Setup</option>
-                                            </select><br>
 
-                                            <label>Item Make:</label><input type="text" name="${currentItem.itemMake}" id="itemMake-input"><br>
-                                            <label>Item Model:</label><input type="text" name="${currentItem.itemModel}" id="itemModel-input"><br>
-                                            <label>Item Category</label><input type="text" name="${currentItem.itemCategory}" id="itemCat-input"><br>
-                                            <label>Item SubCategory:</label><input type="text" name="${currentItem.itemSubCategory}" id="itemSub-input"><br>
-                                            <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="manual-input"><br>
-                                            <label>Item Description:</label><input type="text" name="item-Description" id="desc-input"><br>
-                                            <label>User Notes:</label><input type="text" name="user-notes" id="desc-input"><br>
+                                            <label>Item Make:</label><input type="text" class="modal-input" name="${currentItem.itemMake}" value="${currentItem.itemMake}" id="itemMake-input"><br>
+                                            <label>Item Model:</label><input type="text" class="modal-input" name="${currentItem.itemModel}" value="${currentItem.itemModel}"id="itemModel-input"><br>
+                                            <label>Item Category</label><input type="text" class="modal-input" name="${currentItem.itemCategory}" value="${currentItem.itemCategory}" id="itemCat-input"><br>
+                                            <label>Item SubCategory:</label><input type="text" class="modal-input" name="${currentItem.itemSubCategory}" value="${currentItem.itemSubCategory}" id="itemSub-input"><br>
+                                            <label>Item Manual/Instructions URL:</label><input type="text" class="modal-input" name="${currentItem.itemManualURL}" value="${currentItem.itemManualURL}" id="manual-input"><br>
+                                            <label>Item Description:</label><input type="text" class="modal-input" name="${currentItem.itemDescription}" value="${currentItem.itemDescription}" id="desc-input"><br>
+                                            <label>User Notes:</label><input type="text" class="modal-input" name="user-notes" id="desc-input"><br>
                                             
                                         </form>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary deleteItem-btn">Delete</button>
+                                        <button type="button" id="${item}" class="btn btn-secondary deleteUserItem-btn">Delete</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" id="submitItemBtn" class="btn btn-primary save_new_btn">Submit</button>
+                                        <button type="submit" id="submitItemBtn" class="btn btn-primary save_new_btn" data-dismiss="modal">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +158,7 @@ function fillCreateItemDiv() {
                                     </form>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" id="submitItemBtn" class="btn btn-primary save_new_btn">Submit</button>
+                                        <button type="submit" id="submitItemBtn" class="btn btn-primary save_new_btn" data-dismiss="modal">Submit</button>
                                     </div>
                                 </div>
                             </div>

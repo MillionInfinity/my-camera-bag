@@ -4,6 +4,7 @@ let db = require("./get-gear"),
     user = require("./user"),
     log = require("./log"),
     my = require("./my-gear"),
+    listen = require("./listeners"),
     templates = require("./dom-builder");
 
 
@@ -50,7 +51,7 @@ $(document).on("click", "#all-bags-btn", function () {
 });
 
 
-//TEST TEST TEST TEST TEST TEST TEST TEST 
+//Get My Gear Button
 $(document).on("click", "#my-gear-btn", function () {
     console.log("my-gear-btn clicked");
     let dataObj = db.getUserItems()
@@ -90,36 +91,68 @@ $(document).on("click", ".addBagItem-btn", function () {
     db.addItemtoBag(userBagObj);
 });
 
-// DELETE USER ITEM BUTTON
+//EDIT ITEM BUTTON
+$(document).on("click", ".editItem-btn", function() {
+    console.log("edit item this.id", this.id);
+    let itemObj = buildItemObj(this.id);
+    console.log("itemObj in edit button click", itemObj);
+    db.editItem(itemObj, this.id);
+});
+
+//DELETE MASTER ITEM BUTTON
 $(document).on("click", ".deleteItem-btn", function () {
+    let itemId = this.id;
+    console.log("itemId", itemId);
+    db.deleteItem(itemId);
+});
+
+// DELETE USER ITEM BUTTON
+$(document).on("click", ".deleteUserItem-btn", function () {
     let userItemId = this.id;
     console.log("userItemId", userItemId);
     db.deleteUserItem(userItemId);
 });
 
 // BUILD itemObj FROM MODAL FORM DATA
-function buildItemObj() {
+function buildItemObj(fbID) {
+    console.log("buildItemObj fbID", fbID);
+    let item = db.getSingleItem(fbID);
+    // .then((item) => {
+    console.log("buildItemObj item", item);
     let itemObj = {
-        itemMake: $("#itemMake-input").val(),
-        itemModel: $("#itemModel-input").val(),
-        itemCategory: $("#itemCat-input").val(),
-        itemSubCategory: $("#itemSub-input").val(),
-        manualURL: $("#manual-input").val(),
-        itemDescription: $("#desc-input").val()
-        // uid: login.getUser()
+        itemMake: item.itemMake ? item.itemMake : $("#itemMake-input").val(),
+        itemModel: item.itemModel ? item.itemModel : $("#itemModel-input").val(),
+        itemCategory: item.itemCategory ? item.itemCategory : $("#itemCat-input").val(),
+        itemSubCategory: item.itemSubCategory ? item.itemSubCategory : $("#itemSub-input").val(),
+        manualURL: item.manualURL ? item.manualURL : $("#manual-input").val(),
+        itemDescription: item.itemDescription ? item.itemDescription : $("#desc-input").val()
     };
     return itemObj;
 }
 
 //BUILD userItemObj FROM uid and fbID
 function buildUserItemObj(uid, fbID) {
+    console.log("fbID", fbID);
+    let item = db.getSingleItem(fbID);
+    console.log("item in build user", item);
     let userItemObj = {
+        itemMake: item.itemMake ? item.itemMake : "",
+        itemModel: item.itemModel ? item.itemModel : "",
+        itemCategory: item.itemCategory ? item.itemCategory : "",
+        itemSubCategory: item.itemSubCategory ? item.itemSubCategory : "",
+        manualURL: item.manualURL ? item.manualURL : "",
+        itemDescription: item.itemDescription ? item.itemDescription : "",
         uid: uid ? uid : "",
         fbID: fbID ? fbID : ""
     };
+    console.log("buildUserItemObj userItemObj", userItemObj);
     return userItemObj;
 }
 
+
+let itemTest = {};
+itemTest = db.getSingleItem();
+console.log("itemTest", itemTest);
 
 //BUILD userBagObj
 function buildUserBagObj(uid, fbID) {
