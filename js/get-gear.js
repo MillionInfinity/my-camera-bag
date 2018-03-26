@@ -175,4 +175,4 @@ function editUserItem(userItemObj, userItemId) {
 }
 
 
-module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags, deleteUserItem, getSingleItem, deleteItem, editItem, getUserBags };
+module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags, deleteUserItem, getSingleItem, deleteItem, editItem, editUserItem, getUserBags };

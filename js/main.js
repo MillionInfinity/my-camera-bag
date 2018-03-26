@@ -8,12 +8,12 @@ let db = require("./get-gear"),
     templates = require("./dom-builder");
 
 
-//LOAD INTRO TO DOM
+//LOAD HOME PAGE ELEMENTS
 templates.fillHomeIntro();
 templates.fillCreateItemDiv();
 
-//LOAD ALL ITEMS TO DOM
 function loadAllItemsToDOM() {
+    templates.clearGearDiv();
     db.getItems()
         .then((itemData) => {
             templates.makeItemList(itemData);
@@ -23,15 +23,25 @@ function loadAllItemsToDOM() {
 loadAllItemsToDOM();
 
 //LOAD USER ITEMS TO DOM
+// function loadUserItemsToDOM() {
+//     db.getMatchedItems()
+//         .then((result) => {
+//             templates.makeBagCards(result);
+//         });
+// }
+
+//LOAD USER ITEMS TO DOM
 function loadUserItemsToDOM() {
-    db.getMatchedItems()
-        .then((result) => {
-            templates.makeBagCards(result);
-        });
+    templates.clearGearDiv();
+    db.getUserItems()
+    .then((result) => {
+        templates.makeUserItemList(result);
+    });
 }
 
 //LOAD USER BAGS TO DOM
 function loadUserBagsToDOM() {
+    templates.clearGearDiv();
     db.getUserBags()
         .then((result) => {
             templates.makeUserItemList(result);
@@ -40,6 +50,7 @@ function loadUserBagsToDOM() {
 
 //LOAD ALL BAGS TO DOM
 function loadAllBagsToDOM() {
+    templates.clearGearDiv();
     db.getAllBags()
         .then((data) => {
             templates.makeItemList(data);
@@ -62,23 +73,32 @@ $(document).on("click", "#all-bags-btn", function () {
 
 
 //Get My Gear Button LISTENER
+// $(document).on("click", "#my-gear-btn", function () {
+//     templates.fillMyGearIntro();
+//     templates.fillCreateUserItemDiv();
+//     console.log("my-gear-btn clicked");
+//     let dataObj = db.getUserItems()
+//     .then((dataObj) => {
+//     let newArr = Object.values(dataObj);
+//     console.log("newArr", newArr);
+//     db.getMatchedItems(newArr)
+//     .then((results) => {
+//         console.log("all done", results);
+//         templates.makeModalUserItemList(results);
+//     })
+//     .catch((e) => {
+//         console.log("error", e);
+//     });
+//     });
+// });
+
+//LOAD USER ITEMS (MY GEAR) TO DOM
 $(document).on("click", "#my-gear-btn", function () {
     templates.fillMyGearIntro();
     templates.fillCreateUserItemDiv();
-    console.log("my-gear-btn clicked");
-    let dataObj = db.getUserItems()
-    .then((dataObj) => {
-    let newArr = Object.values(dataObj);
-    console.log("newArr", newArr);
-    db.getMatchedItems(newArr)
-    .then((results) => {
-        console.log("all done", results);
-        templates.makeModalUserItemList(results);
-    })
-    .catch((e) => {
-        console.log("error", e);
-    });
-    });
+    console.log("my gear btn clicked");
+    loadUserItemsToDOM();
+
 });
 
 //LOAD USER BAGS LISTENER LISTENER
@@ -98,7 +118,7 @@ $(document).on("click", ".save_new_btn", function () {
 
 //CREATE USER ITEM LISTENER
 $(document).on("click", "#submitUserItemBtn", function () {
-    let userItemObj = createUserItemObj(user.getUser());
+    let userItemObj = editUserItemObj(user.getUser());
     console.log("userItemObj on click", userItemObj);
     db.addUserItem(userItemObj);
 });
@@ -129,6 +149,15 @@ $(document).on("click", ".submitEdit-btn", function() {
     db.editItem(itemObj, this.id);
 });
 
+//EDIT USER ITEM BUTTON LISTENER
+$(document).on("click", ".submitUserEdit-btn", function () {
+    console.log("edit item this.id", this.id);
+    let userItemObj = editUserItemObj(user.getUser(), this.id);
+    console.log("userItemObj in edit button click", userItemObj);
+    db.editUserItem(userItemObj, this.id);
+});
+
+
 //DELETE MASTER ITEM BUTTON LISTENER
 $(document).on("click", ".deleteItem-btn", function () {
     let itemId = this.id;
@@ -138,7 +167,7 @@ $(document).on("click", ".deleteItem-btn", function () {
 
 // DELETE USER ITEM BUTTON LISTENER
 $(document).on("click", ".deleteUserItem-btn", function () {
-    let userItemId = Object.keys(this);  //WAS let userItemId = this.id BUT DIDN'T WORK;
+    let userItemId = this.id;  //WAS let userItemId = this.id BUT DIDN'T WORK;
     console.log("userItemId", userItemId);
     db.deleteUserItem(userItemId);
 });
@@ -162,7 +191,7 @@ function buildItemObj(fbID) {
     return itemObj;
 }
 
-//BUILD userItemObj FROM uid and fbID
+//BUILD userItemObj FROM MASTER ITEM
 function buildUserItemObj(uid, item) {
     let userItemObj = {
         itemMake: item.itemMake ? item.itemMake : "",
@@ -178,16 +207,16 @@ function buildUserItemObj(uid, item) {
     return userItemObj;
 }
 
-function createUserItemObj(uid) {
+function editUserItemObj(uid, fbID) {
     let userItemObj = {
-        itemMake: $(`#itemMake-input`).val(),
-        itemModel: $(`#itemModel-input`).val(),
-        itemCategory: $(`#itemCat-input`).val(),
-        itemSubCategory: $(`#itemSub-input`).val(),
-        itemImageURL: $(`#itemImageURL-input`).val(),
-        buyNewURL: $(`#buyNew-input`).val(),
-        manualURL: $(`#manual-input`).val(),
-        itemDescription: $(`#desc-input`).val(),
+        itemMake: $(`#${fbID}itemMake-input`).val(),
+        itemModel: $(`#${fbID}itemModel-input`).val(),
+        itemCategory: $(`#${fbID}itemCat-input`).val(),
+        itemSubCategory: $(`#${fbID}itemSub-input`).val(),
+        itemImageURL: $(`#${fbID}itemImageURL-input`).val(),
+        buyNewURL: $(`#${fbID}buyNew-input`).val(),
+        manualURL: $(`#${fbID}manual-input`).val(),
+        itemDescription: $(`#${fbID}desc-input`).val(),
         uid: uid ? uid : ""
     };
     console.log("createUserItemObj userItemObj", userItemObj);
