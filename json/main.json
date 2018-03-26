@@ -21,22 +21,9 @@
     ],
     "items": [
         {
-            "itemMake": "",
-            "itemModel": "",
-            "itemImageURL": "http://",
-            "itemImageFolder": "",
-            "itemCategory": "",
-            "itemSubCategory": "",
-            "itemManualURL": "",
-            "itemSpecs": "",
-            "itemProductReviews": "",
-            "buyNewURL": "",
-            "itemDescription":""
-        },
-        {
             "itemMake": "Canon",
             "itemModel": "EOS 5D Mark IV",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images500x500/1515104479000_1274705.jpg",
             "itemCategory": "Camera / Camera Body",
             "itemSubCategory": "DLSR",
             "itemManualURL": "http://gdlp01.c-wss.com/gds/0/0300024970/03/eos5d-mk4-im3-en.pdf",
@@ -48,7 +35,7 @@
         {
             "itemMake": "Canon",
             "itemModel": "EOS 5D Mark III",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://www.bhphotovideo.com/images/images1000x1000/Canon_5260A002_EOS_5D_Mark_III_847545.jpg",
             "itemImageFolder": "",
             "itemCategory": "Camera / Camera Body",
             "itemSubCategory": "DLSR",
@@ -61,7 +48,7 @@
         {
             "itemMake": "Canon",
             "itemModel": "EF 50mm f/1.2L Lens",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images500x500/1482764713000_457680.jpg",
             "itemImageFolder": "",
             "itemCategory": "Lens",
             "itemSubCategory": "Prime Lens",
@@ -74,7 +61,7 @@
         {
             "itemMake": "Canon",
             "itemModel": "EF 70-200 f/2.8L Lens",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images750x750/1468524687000_680103.jpg",
             "itemImageFolder": "",
             "itemCategory": "Lens",
             "itemSubCategory": "Zoom Lens",
@@ -87,7 +74,7 @@
         {
             "itemMake": "Canon",
             "itemModel": "EF 16-35mm f/2.8L Lens",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images750x750/1472097112000_1274708.jpg",
             "itemImageFolder": "",
             "itemCategory": "Lens",
             "itemSubCategory": "Zoom Lens",
@@ -100,7 +87,7 @@
         {
             "itemMake": "Canon",
             "itemModel": "Speedlite 600EX II-RT",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images750x750/1462938662000_1250646.jpg",
             "itemImageFolder": "",
             "itemCategory": "Lighting",
             "itemSubCategory": "Flashes",
@@ -113,7 +100,7 @@
         {
             "itemMake": "Canon",
             "itemModel": "Speedlite Transmitter ST-E3-RT",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images750x750/1330702647000_847531.jpg",
             "itemImageFolder": "",
             "itemCategory": "Accessories",
             "itemSubCategory": "Flash Accessories",
@@ -126,7 +113,7 @@
         {
             "itemMake": "Canon",
             "itemModel": "LP-E6N Lithium-Ion Battery Pack",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images750x750/1479420388000_1081825.jpg",
             "itemImageFolder": "",
             "itemCategory": "Accessories",
             "itemSubCategory": "Batteries and Chargers",
@@ -139,7 +126,7 @@
         {
             "itemMake": "Canon",
             "itemModel": "LC-E6 Charger",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images750x750/1466462120000_590433.jpg",
             "itemImageFolder": "",
             "itemCategory": "Accessories",
             "itemSubCategory": "Batteries and Chargers",
@@ -152,7 +139,7 @@
         {
             "itemMake": "Lexar",
             "itemModel": "32GB Professional 1066x CompactFlash Memory Card (UDMA 7)",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images750x750/1457633215000_1022076.jpg",
             "itemImageFolder": "",
             "itemCategory": "Memory Cards",
             "itemSubCategory": "CompactFlash Cards",
@@ -165,7 +152,7 @@
         {
             "itemMake": "Apple",
             "itemModel": "13 inch Macbook Pro (early 2015)",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images750x750/1432050588000_1151717.jpg",
             "itemImageFolder": "",
             "itemCategory": "Computers",
             "itemSubCategory": "Laptops",
@@ -178,7 +165,7 @@
         {
             "itemMake": "Canon",
             "itemModel": "Extension Tube EF12 II",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images750x750/1466457686000_300601.jpg",
             "itemImageFolder": "",
             "itemCategory": "Accessories",
             "itemSubCategory": "Lens Accessories",
@@ -191,7 +178,7 @@
         {
             "itemMake": "SanDisk",
             "itemModel": "Extreme PRO 128gb 160mb/s UDMA7",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images750x750/1414594211000_1000364.jpg",
             "itemImageFolder": "",
             "itemCategory": "Memory Cards",
             "itemSubCategory": "CompactFlash Cards",
@@ -204,7 +191,7 @@
         {
             "itemMake": "Canon",
             "itemModel": "EOS Rebel T4i",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://www.bhphotovideo.com/images/images1500x1500/canon_8595b001_eos_rebel_t5i_dslr_945049.jpg",
             "itemImageFolder": "",
             "itemCategory": "Camera / Camera Body",
             "itemSubCategory": "DSLR",
@@ -217,7 +204,7 @@
         {
             "itemMake": "Duracell",
             "itemModel": "AA Batteries",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images500x500/1457881460000_1237787.jpg",
             "itemImageFolder": "",
             "itemCategory": "Accessories",
             "itemSubCategory": "Batteries and Chargers",
@@ -230,7 +217,7 @@
         {
             "itemMake": "Yongnuo",
             "itemModel": "YN600EX-RT",
-            "itemImageURL": "http://",
+            "itemImageURL": "https://static.bhphoto.com/images/images500x500/1484667919000_1311157.jpg",
             "itemImageFolder": "",
             "itemCategory": "Lighting",
             "itemSubCategory": "Flashes",

@@ -76,14 +76,8 @@ function logOut() {
     return firebase.auth().signOut();
 }
 //example with delete
-// function deleteItem(fbID) {
-// 	return $.ajax({
-//       	url: `${firebase.getFBsettings().databaseURL}/songs/${fbID}.json`,
-//       	method: "DELETE"
-// 	}).done((data) => {
-// 		return data;
-// 	});
-// }
+
+
 
 module.exports = {
     getFBDetails,
