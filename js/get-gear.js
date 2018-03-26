@@ -167,7 +167,7 @@ function editItem(itemObj, itemId) {
 function editUserItem(userItemObj, userItemId) {
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userItems/${userItemId}/.json`,
-        type: 'PATCH',
+        type: 'PUT',
         data: JSON.stringify(userItemObj)
     }).done((data) => {
         return data;
@@ -175,4 +175,4 @@ function editUserItem(userItemObj, userItemId) {
 }
 
 
-module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags, deleteUserItem, getSingleItem, deleteItem, editItem };
+module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags, deleteUserItem, getSingleItem, deleteItem, editItem, getUserBags };

@@ -3,9 +3,10 @@
 let $ = require('jquery');
 
 function makeItemList(allItems) {
+    let itemCardDiv;
     for (let item in allItems) {
         let currentItem = allItems[item];
-        let itemCardDiv = `<div class="itemCard-wrap">
+        itemCardDiv = `<div class="itemCard-wrap">
                                 <div id="${item}-card" class="itemCard">
                                     <img src="${currentItem.itemImageURL}" class="listImage" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
                                     <h4 class="list-headline">${currentItem.itemMake} ${currentItem.itemModel}</h4>
@@ -39,7 +40,7 @@ function makeItemList(allItems) {
                                     <div class="modal-footer">
                                         <a type="button" class="btn btn-success" href="${currentItem.buyNewURL}" "target="_blank">Buy New</a>
                                         <button type="button" id="${item}" class="btn btn-danger deleteItem-btn" data-dismiss="modal">Delete</button>
-                                        <button id="${item}" data-toggle="modal" data-target="#editItemModal" class="btn btn-success" data-dismiss="modal">Edit Item</button>
+                                        <button id="${item}" data-toggle="modal" data-target="#${item}-editItemModal" class="btn btn-success">Edit Item</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
@@ -49,7 +50,7 @@ function makeItemList(allItems) {
 
 
                                     <!-- Edit Item Modal -->
-                            <div class="modal fade modalStyle" id="editItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade modalStyle" id="${item}-editItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -60,13 +61,14 @@ function makeItemList(allItems) {
                                     </div>
                                         <form id="itemModalForm" class="modal-body">
 
-                                            <label>Item Make:</label><input type="text" class="modal-input" name="${currentItem.itemMake}" value="${currentItem.itemMake}" id="itemMake-input"><br>
-                                            <label>Item Model:</label><input type="text" class="modal-input" name="${currentItem.itemModel}" value="${currentItem.itemModel}"id="itemModel-input"><br>
-                                            <label>Item Category</label><input type="text" class="modal-input" name="${currentItem.itemCategory}" value="${currentItem.itemCategory}" id="itemCat-input"><br>
-                                            <label>Item SubCategory:</label><input type="text" class="modal-input" name="${currentItem.itemSubCategory}" value="${currentItem.itemSubCategory}" id="itemSub-input"><br>
-                                            <label>Buy New URL:</label><input type="text" class="modal-input" name="${currentItem.buyNewURL}" value="${currentItem.buyNewURL}" id="buyNew-input"><br>
-                                            <label>Item Manual/Instructions URL:</label><input type="text" class="modal-input" name="${currentItem.itemManualURL}" value="${currentItem.itemManualURL}" id="manual-input"><br>
-                                            <label>Item Description:</label><input type="text" class="modal-input" name="${currentItem.itemDescription}" value="${currentItem.itemDescription}" id="desc-input"><br>
+                                            <label>Item Make:</label><input type="text" class="modal-input" name="${currentItem.itemMake}" value="${currentItem.itemMake}" id="${item}itemMake-input"><br>
+                                            <label>Item Model:</label><input type="text" class="modal-input" name="${currentItem.itemModel}" value="${currentItem.itemModel}"id="${item}itemModel-input"><br>
+                                            <label>Item Category</label><input type="text" class="modal-input" name="${currentItem.itemCategory}" value="${currentItem.itemCategory}" id="${item}itemCat-input"><br>
+                                            <label>Item SubCategory:</label><input type="text" class="modal-input" name="${currentItem.itemSubCategory}" value="${currentItem.itemSubCategory}" id="${item}itemSub-input"><br>
+                                            <label>Item Image URL:</label><input type="text" class="modal-input" name="${currentItem.itemImageURL}" value="${currentItem.itemImageURL}" id="${item}itemImageURL-input"><br>
+                                            <label>Buy New URL:</label><input type="text" class="modal-input" name="${currentItem.buyNewURL}" value="${currentItem.buyNewURL}" id="${item}buyNew-input"><br>
+                                            <label>Item Manual/Instructions URL:</label><input type="text" class="modal-input" name="${currentItem.itemManualURL}" value="${currentItem.itemManualURL}" id="${item}manual-input"><br>
+                                            <label>Item Description:</label><input type="text" class="modal-input" name="${currentItem.itemDescription}" value="${currentItem.itemDescription}" id="${item}desc-input"><br>
                                             
                                         </form>
                                     <div class="modal-footer">
@@ -90,16 +92,17 @@ function makeItemList(allItems) {
                                     </div>
                                         <form id="itemModalForm" class="modal-body">
 
-                                            <label>Item Make:</label><input type="text" class="modal-input" name="${currentItem.itemMake}" value="${currentItem.itemMake}" id="itemMake-input"><br>
-                                            <label>Item Model:</label><input type="text" class="modal-input" name="${currentItem.itemModel}" value="${currentItem.itemModel}"id="itemModel-input"><br>
-                                            <label>Item Category</label><input type="text" class="modal-input" name="${currentItem.itemCategory}" value="${currentItem.itemCategory}" id="itemCat-input"><br>
-                                            <label>Item SubCategory:</label><input type="text" class="modal-input" name="${currentItem.itemSubCategory}" value="${currentItem.itemSubCategory}" id="itemSub-input"><br>
-                                            <label>Item Manual/Instructions URL:</label><input type="text" class="modal-input" name="${currentItem.itemManualURL}" value="${currentItem.itemManualURL}" id="manual-input"><br>
-                                            <label>Item Description:</label><input type="text" class="modal-input" name="${currentItem.itemDescription}" value="${currentItem.itemDescription}" id="desc-input"><br>
+                                            <label>Item Make:</label><input type="text" class="modal-input" name="${currentItem.itemMake}" value="${currentItem.itemMake}" id="${item}-itemMake-input"><br>
+                                            <label>Item Model:</label><input type="text" class="modal-input" name="${currentItem.itemModel}" value="${currentItem.itemModel}"id="${item}-itemModel-input"><br>
+                                            <label>Item Category</label><input type="text" class="modal-input" name="${currentItem.itemCategory}" value="${currentItem.itemCategory}" id="${item}-itemCat-input"><br>
+                                            <label>Item SubCategory:</label><input type="text" class="modal-input" name="${currentItem.itemSubCategory}" value="${currentItem.itemSubCategory}" id="${item}-itemSub-input"><br>
+                                            <label>Item Image URL:</label><input type="text" class="modal-input" name="${currentItem.itemImageURL}" value="${currentItem.itemImageURL}" id="${item}-itemImageURL-input"><br>
+                                            <label>Item Manual/Instructions URL:</label><input type="text" class="modal-input" name="${currentItem.itemManualURL}" value="${currentItem.itemManualURL}" id="${item}-manual-input"><br>
+                                            <label>Item Description:</label><input type="text" class="modal-input" name="${currentItem.itemDescription}" value="${currentItem.itemDescription}" id="${item}-desc-input"><br>
                                             
                                         </form>
                                     <div class="modal-footer">
-                                        <button type="button" id="${item}" class="btn btn-secondary deleteItem-btn">Delete</button>
+                                        <button type="button" id="${item}" class="btn btn-secondary deleteItem-btn">Delete Item</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                         <button type="submit" id="${item}" class="btn btn-primary submitEdit-btn" data-dismiss="modal">Submit</button>
                                     </div>
@@ -109,38 +112,24 @@ function makeItemList(allItems) {
 
         $("#gear-div").append(itemCardDiv);
     }
+    
 }
-
-//MAKE USER ITEM LIST
-// function makeUserItemList(items) {
-//     let itemCardDiv = "";
-//     for (let item in items) {
-//         let currentItem = items[item];
-//         itemCardDiv += `<div id="${item}-card" class="itemCard panel panel-default">
-//                                 <div class="panel-heading">
-//                                 <h4 class="list-headline panel-title"><a role="button" data-toggle="collapse" data-target="#collapse-${item}" aria-expanded="true" aria-controls="div-${item}" href="#collapse-${item}">${currentItem.itemMake} ${currentItem.itemModel}</a></h4>
-//                                 <button id="${item}" type="button" class="btn btn-outline-light float-right" data-toggle="modal" data-target="#userItemModal">Edit</button></div>
-//                                 <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body"><p>${currentItem.itemDescription}</p>
-//                                 <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div></div></div>
-//                             </div>`; 
-//     }
-//     $("#gear-div").html(itemCardDiv);
-// }
 
 function makeModalUserItemList(items) {
     let itemCardDiv = "";
     for (let item in items) {
         let currentItem = items[item];
-        itemCardDiv += `<div id="${item}-card" class="itemCard panel panel-default">
-                            <div class="panel-heading">
-                            <h4 class="list-headline panel-title"><a role="button" data-toggle="collapse" data-target="#collapse-${item}" aria-expanded="true" aria-controls="div-${item}" href="#collapse-${item}">${currentItem.itemMake} ${currentItem.itemModel}</a></h4>
-                            <button id="${item}" type="button" class="btn options-btn btn-outline-light float-right" data-toggle="modal" data-target="#myEditItemModal">options</button></div>
-                            <div id="collapse-${item}" class="panel-collapse collapse in"><div class="panel-body"><p>${currentItem.itemDescription}</p>
-                            <div><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a></div></div></div>
-                        </div>
+        itemCardDiv += `<div class="itemCard-wrap">
+                                <div id="${item}-card" class="itemCard">
+                                    <img src="${currentItem.itemImageURL}" class="listImage" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
+                                    <h4 class="list-headline">${currentItem.itemMake} ${currentItem.itemModel}</h4>
+                                    <button id="${item}" class="addToBag-btn btn btn-outline-secondary">Add Item To Camera Bag</button>
+                                    <button id="${item}-infobtn" class="info-btn btn btn-outline-secondary" data-toggle="modal" data-target="#${item}-userInfoModal">More</button>
+                                </div>
+                            </div>
 
                         <!-- Modal -->
-                            <div class="modal fade modalStyle" id="myEditItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade modalStyle" id="${item}-userInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -161,9 +150,9 @@ function makeModalUserItemList(items) {
                                             
                                         </form>
                                     <div class="modal-footer">
-                                        <button type="button" id="${item}" class="btn btn-secondary deleteUserItem-btn">Delete</button>
+                                        <button type="button" id="${item}" class="btn btn-danger deleteUserItem-btn">Delete Item</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" id="submitItemBtn" class="btn btn-primary save_new_btn" data-dismiss="modal">Submit</button>
+                                        <button type="submit" id="submitItemBtn" class="btn btn-primary save_new_btn" data-dismiss="modal">Save Changes</button>
                                     </div>
                                 </div>
                             </div>
@@ -178,16 +167,30 @@ function makeBagCards(bags) {
         let currentBag = bag[bags];
         let bagCardDiv = `<div id="${currentBag}" class="bagCard><h4 class="bag-title">${currentBag.title}</h4></div>`;
 
-        $("#gear-div").append(bagCardDiv);
+        $("#gear-div").html(bagCardDiv);
     }
 }
 
 
 function fillHomeIntro() {
-    let homeIntro = `<div id="intro-div"><h1 id="intro-header">Welcome to My Camera Bag</h1>
-                        <p id="intro-p">My Camera Bag is a tool for photographers to organize and reference their photography gear. Login with your Google Account and begin sorting your gear into 'camera bags' so you have all the info you need to help you prepare for your photography shoots. Create a different bag for each different type of shoot, scenario, enviorment you work with.</p>
+    let homeIntro = `<div id="intro-div"><h1 id="intro-header">Welcome to My Camera Bags</h1>
+                        <p id="intro-p">My Camera Bags is a tool for photographers to organize and reference their photography gear. Login with your Google Account and begin sorting your gear into 'camera bags' so you have all the info you need to help you prepare for your photography shoots. Create a different bag for each different type of shoot, scenario, enviorment you work with.</p>
                     </div>`;
-    $("#intro-div").append(homeIntro);
+    $("#intro-div").html(homeIntro);
+}
+
+function fillMyGearIntro() {
+    let myGearIntro = `<div id="intro-div"><h1 id="intro-header">My Gear</h1>
+                        <p id="intro-p">This is your master inventory of your personal gear. Organize your gear by adding items to bags that you create.</p>
+                    </div>`;
+    $("#intro-div").html(myGearIntro);
+}
+
+function fillMyBagsIntro() {
+    let myBagsIntro = `<div id="intro-div"><h1 id="intro-header">My Bags</h1>
+                        <p id="intro-p">You can have as many bags as you want. Add equipment to your bags and refer back to them later.</p>
+                    </div>`;
+    $("#intro-div").html(myBagsIntro);
 }
 
 function fillCreateItemDiv() {
@@ -261,4 +264,4 @@ function userItemForm(item, itemId) {
 
     
 
-module.exports = { makeItemList, fillHomeIntro, fillCreateItemDiv, userItemForm, makeModalUserItemList };
+module.exports = { makeItemList, fillHomeIntro, fillCreateItemDiv, userItemForm, makeModalUserItemList, fillMyBagsIntro, fillMyGearIntro };
