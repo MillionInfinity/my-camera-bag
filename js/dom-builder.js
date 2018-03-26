@@ -186,6 +186,45 @@ function fillMyGearIntro() {
     $("#intro-div").html(myGearIntro);
 }
 
+function fillCreateUserItemDiv() {
+    let createUserItemDiv = `<div id="createItemDiv">
+                            <div id="createItemText">
+                                <h2>Create Your Own Items</h2>
+                                <p>Is an item you are looking for not in the master inventory list? Click the 'Create Your Item' button to create an item just for you and store it in your personal inventory, 'My Gear'.</p>
+                            </div>
+                        <button id="createUserItem-btn" type="button" class="btn btn-lg btn btn-outline-secondary" data-toggle="modal" data-target="#EditUserItem">Create User Item</button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade modalStyle" id="EditUserItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Create Your Item</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form id="createUserItemModal" class="modal-body">
+                                        <label>Item Make:</label><input type="text" name="item-Make" id="itemMake-input"><br>
+                                        <label>Item Model:</label><input type="text" name="item-Model" id="itemModel-input"><br>
+                                        <label>Item Category</label><input type="text" name="item-Category" id="itemCat-input"><br>
+                                        <label>Item SubCategory:</label><input type="text" name="item-SubCategory" id="itemSub-input"><br>
+                                        <label>Item Image URL:</label><input type="text" name="imageURL" id="imageURL-input"><br>
+                                        <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="manual-input"><br>
+                                        <label>Item Description:</label><input type="text" name="item-Description" id="desc-input"><br>
+
+                                    </form>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" id="submitUserItemBtn" class="btn btn-primary save_new_btn" data-dismiss="modal">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+    $("#secondary-div").html(createUserItemDiv);
+}
+
 function fillMyBagsIntro() {
     let myBagsIntro = `<div id="intro-div"><h1 id="intro-header">My Bags</h1>
                         <p id="intro-p">You can have as many bags as you want. Add equipment to your bags and refer back to them later.</p>
@@ -220,16 +259,17 @@ function fillCreateItemDiv() {
                                         <label>Item Image URL:</label><input type="text" name="imageURL" id="imageURL-input"><br>
                                         <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="manual-input"><br>
                                         <label>Item Description:</label><input type="text" name="item-Description" id="desc-input"><br>
+                                        <label>Your Notes:</label><input type="text" name="user-Notes" id="notes-input">
 
                                     </form>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="submit" id="submitItemBtn" class="btn btn-primary save_new_btn" data-dismiss="modal">Submit</button>
+                                        <button type="submit" id="submitItemBtn" class="btn btn-primary save_new_btn" data-dismiss="modal">Create Item</button>
                                     </div>
                                 </div>
                             </div>
                         </div>`;
-    $("#secondary-div").append(createItemDiv);
+    $("#secondary-div").html(createItemDiv);
 }
 
 function userItemForm(item, itemId) {
@@ -264,4 +304,4 @@ function userItemForm(item, itemId) {
 
     
 
-module.exports = { makeItemList, fillHomeIntro, fillCreateItemDiv, userItemForm, makeModalUserItemList, fillMyBagsIntro, fillMyGearIntro };
+module.exports = { makeItemList, fillHomeIntro, fillCreateItemDiv, userItemForm, makeModalUserItemList, fillMyBagsIntro, fillMyGearIntro, fillCreateUserItemDiv };

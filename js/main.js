@@ -49,6 +49,8 @@ function loadAllBagsToDOM() {
 //LOAD ALL ITEMS TO DOM BUTTON LISTENER
 $(document).on("click", "#all-gear-btn", function () {
     console.log("Browse Gear clicked");
+    templates.fillHomeIntro();
+    templates.fillCreateItemDiv();
     loadAllItemsToDOM();
 });
 
@@ -62,6 +64,7 @@ $(document).on("click", "#all-bags-btn", function () {
 //Get My Gear Button LISTENER
 $(document).on("click", "#my-gear-btn", function () {
     templates.fillMyGearIntro();
+    templates.fillCreateUserItemDiv();
     console.log("my-gear-btn clicked");
     let dataObj = db.getUserItems()
     .then((dataObj) => {
@@ -86,19 +89,29 @@ $(document).on("click", "#user-bags-btn", function () {
 });
 
 
-//ADD ITEM TO MASTER IVENTORY LISTENER
+//CREATE ITEM AND ADD TO MASTER IVENTORY LISTENER
 $(document).on("click", ".save_new_btn", function () {
     let itemObj = buildItemObj();
     db.addItem(itemObj);
 });
 
 
-//ADD ITEM TO USER INVENTORY LISTENER
-$(document).on("click", ".addItem-btn", function () {
-    console.log("this.id", this.id);
-    let userItemObj = buildUserItemObj(user.getUser(), this.id);
+//CREATE USER ITEM LISTENER
+$(document).on("click", "#submitUserItemBtn", function () {
+    let userItemObj = createUserItemObj(user.getUser());
     console.log("userItemObj on click", userItemObj);
     db.addUserItem(userItemObj);
+});
+
+//ADD MASTER INVENTORY ITEM TO USER INVENTORY LISTENER
+$(document).on("click", ".addItem-btn", function () {
+    console.log("this.id", this.id);
+    let item = db.getSingleItem(this.id)
+    .then((item) => {
+        let userItemObj = buildUserItemObj(user.getUser(), item);
+        console.log("userItemObj on click", userItemObj);
+        db.addUserItem(userItemObj);
+    });
 });
 
 // ADD ITEM TO USER BAG LISTENER
@@ -130,24 +143,6 @@ $(document).on("click", ".deleteUserItem-btn", function () {
     db.deleteUserItem(userItemId);
 });
 
-// BUILD itemObj FROM MODAL FORM DATA
-// function buildItemObj(fbID) {
-//     console.log("buildItemObj fbID", fbID);
-//     let item;
-//     // .then((item) => {
-//     let itemObj = {
-//         itemMake: item.itemMake ? item.itemMake : $("#itemMake-input").val(),
-//         itemModel: item.itemModel ? item.itemModel : $("#itemModel-input").val(),
-//         itemCategory: item.itemCategory ? item.itemCategory : $("#itemCat-input").val(),
-//         itemSubCategory: item.itemSubCategory ? item.itemSubCategory : $("#itemSub-input").val(),
-//         itemImageURL: item.itemImageURL ? item.itemImageURL : $("#imageURL-input").val(),
-//         buyNewURL: item.buyNewURL ? item.buyNewURL : $("#buyNew-input").val(),
-//         manualURL: item.manualURL ? item.manualURL : $("#manual-input").val(),
-//         itemDescription: item.itemDescription ? item.itemDescription : $("#desc-input").val()
-//     };
-//     console.log("itemObj in buildItemObj", itemObj);
-//     return itemObj;
-// }
 
 function buildItemObj(fbID) {
     console.log("buildItemObj fbID", fbID);
@@ -168,10 +163,7 @@ function buildItemObj(fbID) {
 }
 
 //BUILD userItemObj FROM uid and fbID
-function buildUserItemObj(uid, fbID) {
-    console.log("fbID in buildUserItemObj", fbID); //This is the correct Id for the item I want
-    let item = db.getSingleItem(fbID);  //This is where I'm not getting what I need!!!
-    console.log("item in build user", item);
+function buildUserItemObj(uid, item) {
     let userItemObj = {
         itemMake: item.itemMake ? item.itemMake : "",
         itemModel: item.itemModel ? item.itemModel : "",
@@ -180,17 +172,28 @@ function buildUserItemObj(uid, fbID) {
         itemImageURL: item.itemImageURL ? item.itemImageURL : "",
         manualURL: item.manualURL ? item.manualURL : "",
         itemDescription: item.itemDescription ? item.itemDescription : "",
-        uid: uid ? uid : "",
-        fbID: fbID ? fbID : ""
+        uid: uid ? uid : ""
     };
     console.log("buildUserItemObj userItemObj", userItemObj);
     return userItemObj;
 }
 
+function createUserItemObj(uid) {
+    let userItemObj = {
+        itemMake: $(`#itemMake-input`).val(),
+        itemModel: $(`#itemModel-input`).val(),
+        itemCategory: $(`#itemCat-input`).val(),
+        itemSubCategory: $(`#itemSub-input`).val(),
+        itemImageURL: $(`#itemImageURL-input`).val(),
+        buyNewURL: $(`#buyNew-input`).val(),
+        manualURL: $(`#manual-input`).val(),
+        itemDescription: $(`#desc-input`).val(),
+        uid: uid ? uid : ""
+    };
+    console.log("createUserItemObj userItemObj", userItemObj);
+    return userItemObj;
+}
 
-let itemTest = {};
-itemTest = db.getSingleItem();
-console.log("itemTest", itemTest);
 
 //BUILD userBagObj
 function buildUserBagObj(uid, fbID) {
