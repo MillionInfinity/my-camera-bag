@@ -22,13 +22,6 @@ function loadAllItemsToDOM() {
 
 loadAllItemsToDOM();
 
-//LOAD USER ITEMS TO DOM
-// function loadUserItemsToDOM() {
-//     db.getMatchedItems()
-//         .then((result) => {
-//             templates.makeBagCards(result);
-//         });
-// }
 
 //LOAD USER ITEMS TO DOM
 function loadUserItemsToDOM() {
@@ -44,7 +37,7 @@ function loadUserBagsToDOM() {
     templates.clearGearDiv();
     db.getUserBags()
         .then((result) => {
-            templates.makeUserItemList(result);
+            templates.makeBagList(result);
         });
 }
 
@@ -72,25 +65,6 @@ $(document).on("click", "#all-bags-btn", function () {
 });
 
 
-//Get My Gear Button LISTENER
-// $(document).on("click", "#my-gear-btn", function () {
-//     templates.fillMyGearIntro();
-//     templates.fillCreateUserItemDiv();
-//     console.log("my-gear-btn clicked");
-//     let dataObj = db.getUserItems()
-//     .then((dataObj) => {
-//     let newArr = Object.values(dataObj);
-//     console.log("newArr", newArr);
-//     db.getMatchedItems(newArr)
-//     .then((results) => {
-//         console.log("all done", results);
-//         templates.makeModalUserItemList(results);
-//     })
-//     .catch((e) => {
-//         console.log("error", e);
-//     });
-//     });
-// });
 
 //LOAD USER ITEMS (MY GEAR) TO DOM
 $(document).on("click", "#my-gear-btn", function () {
@@ -105,6 +79,7 @@ $(document).on("click", "#my-gear-btn", function () {
 $(document).on("click", "#user-bags-btn", function () {
     console.log("Browse Bags clicked");
     templates.fillMyBagsIntro();
+    templates.fillCreateBagDiv();
     loadUserBagsToDOM();
 });
 
@@ -166,6 +141,13 @@ $(document).on("click", ".deleteItem-btn", function () {
 });
 
 // DELETE USER ITEM BUTTON LISTENER
+$(document).on("click", ".deletebag-btn", function () {
+    let userBagId = this.id;  //WAS let userItemId = this.id BUT DIDN'T WORK;
+    console.log("userBagId", userBagId);
+    db.deleteBag(userBagId);
+});
+
+// DELETE BAG BUTTON LISTENER
 $(document).on("click", ".deleteUserItem-btn", function () {
     let userItemId = this.id;  //WAS let userItemId = this.id BUT DIDN'T WORK;
     console.log("userItemId", userItemId);
@@ -201,6 +183,8 @@ function buildUserItemObj(uid, item) {
         itemImageURL: item.itemImageURL ? item.itemImageURL : "",
         manualURL: item.manualURL ? item.manualURL : "",
         itemDescription: item.itemDescription ? item.itemDescription : "",
+        itemCondition: "",
+        itemNotes: "",
         uid: uid ? uid : ""
     };
     console.log("buildUserItemObj userItemObj", userItemObj);
@@ -217,6 +201,8 @@ function editUserItemObj(uid, fbID) {
         buyNewURL: $(`#${fbID}buyNew-input`).val(),
         manualURL: $(`#${fbID}manual-input`).val(),
         itemDescription: $(`#${fbID}desc-input`).val(),
+        itemCondition: $(`#${fbID}cond-input`).val(),
+        itemNotes: $(`#${fbID}notes-input`).val(),
         uid: uid ? uid : ""
     };
     console.log("createUserItemObj userItemObj", userItemObj);
@@ -232,3 +218,31 @@ function buildUserBagObj(uid, fbID) {
     };
     return userBagObj;
 }
+
+//LOAD USER ITEMS TO DOM
+// function loadUserItemsToDOM() {
+//     db.getMatchedItems()
+//         .then((result) => {
+//             templates.makeBagCards(result);
+//         });
+// }
+
+//Get My Gear Button LISTENER
+// $(document).on("click", "#my-gear-btn", function () {
+//     templates.fillMyGearIntro();
+//     templates.fillCreateUserItemDiv();
+//     console.log("my-gear-btn clicked");
+//     let dataObj = db.getUserItems()
+//     .then((dataObj) => {
+//     let newArr = Object.values(dataObj);
+//     console.log("newArr", newArr);
+//     db.getMatchedItems(newArr)
+//     .then((results) => {
+//         console.log("all done", results);
+//         templates.makeModalUserItemList(results);
+//     })
+//     .catch((e) => {
+//         console.log("error", e);
+//     });
+//     });
+// });
