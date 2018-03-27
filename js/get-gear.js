@@ -44,9 +44,12 @@ function getAllBags() {
 
 //GET userBags
 function getUserBags(uid) {
+    uid = user.getUser();
+    console.log("uid in getUserBags", uid);
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userBags.json`
+        url: `${firebase.getFBsettings().databaseURL}/userBags.json?orderBy="uid"&equalTo="${uid}"`
     }).done((allItems) => {
+        console.log("all items in getUserBags", allItems);
         return allItems;
     });
 }
@@ -151,6 +154,16 @@ function deleteUserItem(userItemId) {
     });
 }
 
+function deleteBag(userBagId) {
+    console.log("delete userBagId", userBagId);
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userBags/${userBagId}.json`,
+        method: "DELETE"
+    }).done((data) => {
+        return data;
+    });
+}
+
 
 function editItem(itemObj, itemId) {
     console.log("editItem itemObj", itemObj);
@@ -175,4 +188,4 @@ function editUserItem(userItemObj, userItemId) {
 }
 
 
-module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags, deleteUserItem, getSingleItem, deleteItem, editItem, getUserBags };
+module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags, deleteUserItem, getSingleItem, deleteItem, editItem, editUserItem, getUserBags, deleteBag };
