@@ -1,19 +1,10 @@
 "use strict";
-// This module has no knowledge of the DOM, or where the data goes after it is fetched from Firebase.
-// It is only concerned with getting and setting data in the db
 
 let $ = require('jquery'),
     firebase = require("./fb-config"),
     provider = new firebase.auth.GoogleAuthProvider();
 
-// ****************************************
-// DB interaction using Firebase REST API
-// ****************************************
-
-// POST - Submits data to be processed to a specified resource.
-// GET - Requests/read data from a specified resource
-// PUT - Update data to a specified resource.
-
+//Get User details from Firebase
 function getFBDetails(user) {
     console.log("user", user);
     return $.ajax({
@@ -25,6 +16,7 @@ function getFBDetails(user) {
     });
 }
 
+//Add User to Firebase
 function addUserFB(userObj) {
     console.log("userObj", userObj);
     return $.ajax({
@@ -37,6 +29,8 @@ function addUserFB(userObj) {
     });
 }
 
+
+//Update user details in Firebase
 function updateUserFB(userObj) {
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/user/${userObj.fbID}.json`,
@@ -48,7 +42,7 @@ function updateUserFB(userObj) {
     });
 }
 
-// remember firebase returns a promise
+//Create User
 function createUser(userObj) {
     return firebase.auth().createUserWithEmailAndPassword(userObj.email, userObj.password)
         .catch(function (error) {

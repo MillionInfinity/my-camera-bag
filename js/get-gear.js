@@ -1,10 +1,7 @@
 "use strict";
 
-console.log("get-gear here");
-
 let $ = require('jquery'),
     user = require("./user"),
-    // templates = require('./dom-builder'),
     firebase = require("./fb-config");
 
 let myGearArr = [];
@@ -27,7 +24,15 @@ function getSingleItem(fbID) {
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/items/${fbID}.json`
     }).done((item) => {
-        console.log("getSingleItem item", item);
+        return item;
+    });
+}
+
+//GET A SINGLE USER ITEM FROM USER ITEMS
+function getSingleUserItem(fbID) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userItems/${fbID}.json`
+    }).done((item) => {
         return item;
     });
 }
@@ -45,7 +50,6 @@ function getAllBags() {
 //GET userBags
 function getUserBags(uid) {
     uid = user.getUser();
-    console.log("uid in getUserBags", uid);
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userBags.json?orderBy="uid"&equalTo="${uid}"`
     }).done((allItems) => {
@@ -59,36 +63,12 @@ function getUserBags(uid) {
 
 function getUserItems(uid) {
     uid = user.getUser();
-    console.log("getUserItems uid", uid);
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userItems.json?orderBy="uid"&equalTo="${uid}"`
     }).done((allItems) => {
         return allItems;
     });
 }
-
-
-function ajaxCalls(passedItem){
-    return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/items/${passedItem.fbID}.json?`
-    }).done((item) => {
-        myGearArr.push(item);
-        return item;
-    });
-}
-
-
-function getMatchedItems(array) {
-        let promiseArr = [];
-        for (var i = 0; i < array.length; i++) {
-            promiseArr.push(ajaxCalls(array[i])); 
-        }
-        return Promise.all(promiseArr);
-}
-
-
-// getMatchedItems(getUserItems());
-
 
 //THIS ADDS AN ITEM TO THE MASTER INVENTORY items IN FIREBASE
 function addItem(itemFormObj) {   
@@ -120,9 +100,9 @@ function addUserItem(userItemObj) {
 }
 
 //THIS ADDS A userItems TO A userBags
-function addItemtoBag (userBagObj) {
+function addItemToBag (userBagObj) {
     return $.ajax({
-        url: `${firebase.getFBsettings().databaseURL}/userBags.json`,
+        url: `${firebase.getFBsettings().databaseURL}/userBagItems.json`,
         type: 'POST',
         data: JSON.stringify(userBagObj),
         dataType: 'json'
@@ -145,7 +125,6 @@ function deleteItem(itemId) {
 
 
 function deleteUserItem(userItemId) {
-    console.log("delete userItemId", userItemId);
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userItems/${userItemId}.json`,
         method: "DELETE"
@@ -155,7 +134,6 @@ function deleteUserItem(userItemId) {
 }
 
 function deleteBag(userBagId) {
-    console.log("delete userBagId", userBagId);
     return $.ajax({
         url: `${firebase.getFBsettings().databaseURL}/userBags/${userBagId}.json`,
         method: "DELETE"
@@ -188,4 +166,33 @@ function editUserItem(userItemObj, userItemId) {
 }
 
 
-module.exports = { getItems, addItem, addUserItem, getUserItems, getMatchedItems, addItemtoBag, getAllBags, deleteUserItem, getSingleItem, deleteItem, editItem, editUserItem, getUserBags, deleteBag };
+function getUserBagItems(bagID) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userBagItems.json?orderBy="bagID"&equalTo="${bagID}"`
+    }).done((allItems) => {
+        return allItems;
+    });
+}
+
+function ajaxCalls(passedItem) {
+    return $.ajax({
+        url: `${firebase.getFBsettings().databaseURL}/userItems/${passedItem.fbID}.json?`
+    }).done((item) => {
+        myGearArr.push(item);
+        return item;
+    });
+}
+
+
+function getMatchedBagItems(array) {
+    let promiseArr = [];
+    for (var i = 0; i < array.length; i++) {
+        promiseArr.push(ajaxCalls(array[i]));
+    }
+    return Promise.all(promiseArr);
+}
+
+
+// getMatchedItems(getUserItems());
+
+module.exports = { getItems, addItem, addUserItem, getUserItems, addItemToBag, getAllBags, deleteUserItem, getSingleItem, deleteItem, editItem, editUserItem, getUserBags, deleteBag, getUserBagItems, getMatchedBagItems, getSingleUserItem };
