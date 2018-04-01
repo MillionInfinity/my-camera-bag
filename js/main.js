@@ -3,8 +3,6 @@
 let db = require("./get-gear"),
     user = require("./user"),
     log = require("./log"),
-    my = require("./my-gear"),
-    listen = require("./listeners"),
     templates = require("./dom-builder");
 
 
@@ -52,7 +50,6 @@ function loadAllBagsToDOM() {
 
 //LOAD ALL ITEMS TO DOM BUTTON LISTENER
 $(document).on("click", "#all-gear-btn", function () {
-    console.log("Browse Gear clicked");
     templates.fillHomeIntro();
     templates.fillCreateItemDiv();
     loadAllItemsToDOM();
@@ -60,7 +57,6 @@ $(document).on("click", "#all-gear-btn", function () {
 
 //Load All Bags To DOM BUTTON
 $(document).on("click", "#all-bags-btn", function () {
-    console.log("Browse Bags clicked");
     loadAllBagsToDOM();
 });
 
@@ -70,14 +66,12 @@ $(document).on("click", "#all-bags-btn", function () {
 $(document).on("click", "#my-gear-btn", function () {
     templates.fillMyGearIntro();
     templates.fillCreateUserItemDiv();
-    console.log("my gear btn clicked");
     loadUserItemsToDOM();
 
 });
 
-//LOAD USER BAGS LISTENER LISTENER
+//LOAD USER BAGS LISTENER
 $(document).on("click", "#user-bags-btn", function () {
-    console.log("Browse Bags clicked");
     templates.fillMyBagsIntro();
     templates.fillCreateBagDiv();
     loadUserBagsToDOM();
@@ -94,41 +88,34 @@ $(document).on("click", ".save_new_btn", function () {
 //CREATE USER ITEM LISTENER
 $(document).on("click", "#submitUserItemBtn", function () {
     let userItemObj = editUserItemObj(user.getUser());
-    console.log("userItemObj on click", userItemObj);
     db.addUserItem(userItemObj);
 });
 
 //ADD MASTER INVENTORY ITEM TO USER INVENTORY LISTENER
 $(document).on("click", ".addItem-btn", function () {
-    console.log("this.id", this.id);
     let item = db.getSingleItem(this.id)
     .then((item) => {
         let userItemObj = buildUserItemObj(user.getUser(), item);
-        console.log("userItemObj on click", userItemObj);
         db.addUserItem(userItemObj);
     });
 });
 
 // ADD ITEM TO USER BAG LISTENER
-$(document).on("click", ".addToBag-btn", function () {
-    console.log("this.id", this.id);
-    let userBagObj = buildUserBagObj(user.getUser(), this.id);
-    db.addItemtoBag(userBagObj);
-});
+// $(document).on("click", ".addToBag-btn", function () {
+//     let userBagObj = buildUserBagObj(user.getUser(), this.id);
+//     db.addItemToBag(userBagObj);
+// });
 
 //EDIT ITEM BUTTON LISTENER
 $(document).on("click", ".submitEdit-btn", function() {
-    console.log("edit item this.id", this.id);
     let itemObj = buildItemObj(this.id);
-    console.log("itemObj in edit button click", itemObj);
+    console.log("itemObj", itemObj);
     db.editItem(itemObj, this.id);
 });
 
 //EDIT USER ITEM BUTTON LISTENER
 $(document).on("click", ".submitUserEdit-btn", function () {
-    console.log("edit item this.id", this.id);
     let userItemObj = editUserItemObj(user.getUser(), this.id);
-    console.log("userItemObj in edit button click", userItemObj);
     db.editUserItem(userItemObj, this.id);
 });
 
@@ -136,29 +123,23 @@ $(document).on("click", ".submitUserEdit-btn", function () {
 //DELETE MASTER ITEM BUTTON LISTENER
 $(document).on("click", ".deleteItem-btn", function () {
     let itemId = this.id;
-    console.log("itemId", itemId);
     db.deleteItem(itemId);
 });
 
-// DELETE USER ITEM BUTTON LISTENER
+// DELETE USER BAG BUTTON LISTENER
 $(document).on("click", ".deletebag-btn", function () {
-    let userBagId = this.id;  //WAS let userItemId = this.id BUT DIDN'T WORK;
-    console.log("userBagId", userBagId);
+    let userBagId = this.id;
     db.deleteBag(userBagId);
 });
 
-// DELETE BAG BUTTON LISTENER
+// DELETE USER ITEM BUTTON LISTENER
 $(document).on("click", ".deleteUserItem-btn", function () {
-    let userItemId = this.id;  //WAS let userItemId = this.id BUT DIDN'T WORK;
-    console.log("userItemId", userItemId);
+    let userItemId = this.id;
     db.deleteUserItem(userItemId);
 });
 
 
 function buildItemObj(fbID) {
-    console.log("buildItemObj fbID", fbID);
-    // .then((item) => {
-    // console.log(".val", $("#" + ${fbID} + "itemMake-input"));
     let itemObj = {
         itemMake: $(`#${fbID}itemMake-input`).val(),
         itemModel: $(`#${fbID}itemModel-input`).val(),
@@ -169,7 +150,6 @@ function buildItemObj(fbID) {
         manualURL: $(`#${fbID}manual-input`).val(),
         itemDescription: $(`#${fbID}desc-input`).val()
     };
-    console.log("itemObj in buildItemObj", itemObj);
     return itemObj;
 }
 
@@ -187,7 +167,6 @@ function buildUserItemObj(uid, item) {
         itemNotes: "",
         uid: uid ? uid : ""
     };
-    console.log("buildUserItemObj userItemObj", userItemObj);
     return userItemObj;
 }
 
@@ -211,13 +190,43 @@ function editUserItemObj(uid, fbID) {
 
 
 //BUILD userBagObj
-function buildUserBagObj(uid, fbID) {
+function buildUserBagObj(uid, fbID, bagID) {
     let userBagObj = {
         uid: uid ? uid : "",
-        fbID: fbID ? fbID : ""
+        fbID: fbID ? fbID : "",
+        bagID: bagID ? bagID : ""
     };
     return userBagObj;
 }
+
+//Build userBagDropdown LISTENER
+$(document).on("click", ".dropdown-menu", function () {
+    let itemID = this.id;
+    templates.makeUserBagDropdown(itemID);
+    });
+
+
+//Get My Bag Items LISTENER
+$(document).on("click", ".my-bag-items", function () {
+    // templates.fillMyGearIntro();
+    // templates.fillCreateUserItemDiv();
+    console.log("my-bag-items clicked");
+    let dataObj = db.getUserBagItems(this.id)
+    .then((dataObj) => {
+    let bagItemArr = Object.values(dataObj);
+    console.log("newArr", bagItemArr);
+    db.getMatchedBagItems(bagItemArr)
+    .then((results) => {
+        console.log("all done", results);
+        templates.makeUserItemList(results);
+    })
+    .catch((e) => {
+        console.log("error", e);
+    });
+    });
+});
+
+
 
 //LOAD USER ITEMS TO DOM
 // function loadUserItemsToDOM() {

@@ -1,6 +1,7 @@
 "use strict";
 
-let $ = require('jquery');
+let $ = require('jquery'),
+        db = require('./get-gear');
 
 
 function clearGearDiv() {
@@ -97,8 +98,14 @@ function makeUserItemList(allItems) {
                                 <div id="${item}-card" class="itemCard">
                                     <img src="${currentItem.itemImageURL}" class="listImage" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
                                     <h4 class="list-headline">${currentItem.itemMake} ${currentItem.itemModel}</h4>
-                                    <button id="${item}" class="addToBag-btn btn btn-outline-secondary">Add to Camera Bag</button>
                                     <button id="${item}-infobtn" class="info-btn btn  btn btn-outline-secondary" data-toggle="modal" data-target="#${item}-infoModal">More Info</button>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add To Camera Bag</button>
+                                        <div class="dropdown-menu" id="${item}" aria-labelledby="dropdownMenuButton">
+                                            
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
 
@@ -124,8 +131,6 @@ function makeUserItemList(allItems) {
                                         <h5 class="infoModal-h5">Item Description</h5>
                                         <p>${currentItem.itemDescription}:</p></div>
                                         
-                                        
-                                        
                                     </div>
                                         
                                     <div class="modal-footer">
@@ -135,7 +140,7 @@ function makeUserItemList(allItems) {
                                     </div>
                                 </div>
                             </div>
-
+                     
                                     <!-- Edit User Item Modal -->
                             <div class="modal fade modalStyle" id="${item}-editUserItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -168,13 +173,36 @@ function makeUserItemList(allItems) {
                                     </div>
                                 </div>
                             </div>
+
+                                                  <!-- Add Item to User Bag -->
+                            <div class="modal fade modalStyle" id="${item}addToBagModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Item To Bag</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4>Add Your ${currentItem.itemMake} ${currentItem.itemModel} To A Bag List</h4>
+                                        <div class="selectBagList">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>`;
 
         $("#gear-div").append(userItemCardDiv);
     }
 
 }
-
+{/* <button id="${item}" class="addToBag-btn btn btn-outline-secondary" data-toggle="modal" data-target="#${item}addToBagModal">Add to Camera Bag</button> */}
 
 function makeBagList(bags) {
     console.log("bags", bags);
@@ -186,6 +214,7 @@ function makeBagList(bags) {
                                     <h4 class="bag-headline">${currentBag.title}</h4>
                                     <p class="bagCardContents">Bag Card Contents Here: </p>
                                     <div class="bagCardFooter">
+                                        <button id="${bag}" class="my-bag-items btn btn-outline-secondary">View Bag Items</button><br>
                                         <button id="${bag}-infobtn" class="info-btn btn  btn btn-outline-secondary" data-toggle="modal" data-target="#${bag}-infoModal">More Info</button>
                                     </div>
                                 </div>
@@ -269,7 +298,7 @@ function fillCreateUserItemDiv() {
     let createUserItemDiv = `<div id="createItemDiv">
                             <div id="createItemText">
                                 <h2>Create Your Own Items</h2>
-                                <p>Is an item you are looking for not in the master inventory list? Click the 'Create Your Item' button to create an item just for you and store it in your personal inventory, 'My Gear'.</p>
+                                <p>Is an item you are looking for not in the master inventory list? Click the 'Create User Item' button to create an item just for you and store it in your personal inventory, 'My Gear'.</p>
                             </div>
                         <button id="createUserItem-btn" type="button" class="btn btn-lg btn btn-outline-secondary" data-toggle="modal" data-target="#EditUserItem">Create User Item</button>
                         </div>
@@ -399,7 +428,56 @@ function userItemForm(item, itemId) {
     });
 }
 
-    
+function createUserBagsListSelector(uid) {
+    db.getUserBags(uid)
+    .then ((dataObj) => {
+        let newArr = Object.values(dataObj);
+        console.log("newArr", newArr);
+    });
+}
+
+function makeUserBagDropdown(uid, itemID) {
+    db.getUserBags(uid)
+        .then((dataObj) => {
+            let userBagsArr = Object.values(dataObj);
+            console.log("newArr", userBagsArr);
+            let userBagDropdown;
+            for (let bag in userBagsArr) {
+                let currentBag = userBagsArr[bag];
+                userBagDropdown = `<a class="dropdown-item" id="${bag}">${currentBag.title}</a>`;
+                $("#${itemID}").append(userBagDropdown);
+            }
+        });
+}
+
+
+// function buildUserItemPage(item) {
+//     let userItemPage;
+//     for (let item in allItems) {
+//         let currentItem = allItems[item];
+//         userItemPage =
+//                 `<div class="div-content">
+//                     <div class="div-header">
+//                         <div>
+//                             <h4>${currentItem.itemMake} ${currentItem.itemModel}</h4>
+//                             <small>Item Category: ${currentItem.itemCategory}: ${currentItem.itemSubCategory}</small>
+//                         </div>
+//                     </div>
+//                     <div class="div-body">
+//                         <div>
+//                             <img src="${currentItem.itemImageURL}" class="modal-image" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
+//                             <a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a>
+//                             <h5>User Notes</h5>
+//                             <p>${currentItem.userNotes}</p>
+//                             <h5>Item Description</h5>
+//                             <p>${currentItem.itemDescription}:</p>
+//                             <button type="button" id="${item}" class="btn btn-danger deleteUserItem-btn" data-dismiss="modal">Delete Item</button>
+//                         </div>
+//                     </div>
+//                 </div>`;
+
+//     }
+// }
 module.exports = { makeItemList, fillHomeIntro, fillCreateItemDiv, userItemForm, makeUserItemList, fillMyBagsIntro, fillMyGearIntro, fillCreateUserItemDiv, clearGearDiv, fillCreateBagDiv, makeBagList };
 
 // function makeModalUserItemList(items) {

@@ -11,7 +11,6 @@ let $ = require('jquery'),
 
 //***************************************************************
 $("#login").click(function () {
-    console.log("clicked login");
     db.logInGoogle()
         .then((result) => {
             console.log("result from login", result.user.uid);
@@ -23,7 +22,6 @@ $("#login").click(function () {
 });
 
 $("#logout").click(() => {
-    console.log("main.logout clicked");
     db.logOut();
     $("#login").removeClass("is-hidden");
     $("#logout").addClass("is-hidden");
