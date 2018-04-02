@@ -39,13 +39,13 @@ function makeItemList(allItems) {
                                         <div>
                                         <img src="${currentItem.itemImageURL}" class="modal-image" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
                                         <h5 class="infoModal-h5">Item Description</h5>
-                                        <p>${currentItem.itemDescription}:</p></div>
-                                        <a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a>
+                                        <p>${currentItem.itemDescription}</p></div>
+                                        <h5>Product Manual</h5><p><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Manual</a></p>
                                         
                                     </div>
                                         
                                     <div class="modal-footer">
-                                        <a type="button" class="btn btn-success" href="${currentItem.buyNewURL}" "target="_blank">Buy New</a>
+                                        <a type="button" class="buy-btn" href="${currentItem.buyNewURL}" "target="_blank">Buy New</a>
                                         <button type="button" id="${item}" class="btn btn-danger deleteItem-btn" data-dismiss="modal">Delete</button>
                                         <button id="${item}" data-toggle="modal" data-target="#${item}-editItemModal" class="btn btn-success">Edit Item</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
