@@ -398,9 +398,7 @@ function fillCreateItemDiv() {
                                         <label>Item SubCategory:</label><input type="text" name="item-SubCategory" id="itemSub-input"><br>
                                         <label>Item Image URL:</label><input type="text" name="imageURL" id="imageURL-input"><br>
                                         <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="manual-input"><br>
-                                        <label>Item Description:</label><input type="text" name="item-Description" id="desc-input"><br>
-                                        <label>Your Notes:</label><input type="text" name="user-Notes" id="notes-input">
-
+                                        <label>Item Description:</label><input type="text" name="item-Description" id="desc-input">
                                     </form>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

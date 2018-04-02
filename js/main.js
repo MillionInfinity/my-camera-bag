@@ -21,6 +21,7 @@ function loadAllItemsToDOM() {
 loadAllItemsToDOM();
 
 
+
 //LOAD USER ITEMS TO DOM
 function loadUserItemsToDOM() {
     templates.clearGearDiv();
@@ -79,8 +80,10 @@ $(document).on("click", "#user-bags-btn", function () {
 
 
 //CREATE ITEM AND ADD TO MASTER IVENTORY LISTENER
-$(document).on("click", ".save_new_btn", function () {
+$(document).on("click", "#submitItemBtn", function () {
+    console.log("create new item clicked");
     let itemObj = buildItemObj();
+    console.log("itemObj", itemObj);
     db.addItem(itemObj);
 });
 
@@ -108,7 +111,7 @@ $(document).on("click", ".addItem-btn", function () {
 
 //EDIT ITEM BUTTON LISTENER
 $(document).on("click", ".submitEdit-btn", function() {
-    let itemObj = buildItemObj(this.id);
+    let itemObj = editItemObj(this.id);
     console.log("itemObj", itemObj);
     db.editItem(itemObj, this.id);
 });
@@ -139,7 +142,23 @@ $(document).on("click", ".deleteUserItem-btn", function () {
 });
 
 
-function buildItemObj(fbID) {
+//Create New Item
+function buildItemObj() {
+    let itemObj = {
+        itemMake: $(`#itemMake-input`).val(),
+        itemModel: $(`#itemModel-input`).val(),
+        itemCategory: $(`#itemCat-input`).val(),
+        itemSubCategory: $(`#itemSub-input`).val(),
+        itemImageURL: $(`#itemImageURL-input`).val(),
+        buyNewURL: $(`#buyNew-input`).val(),
+        manualURL: $(`#manual-input`).val(),
+        itemDescription: $(`#desc-input`).val()
+    };
+    return itemObj;
+}
+
+//Create Edited Item Object
+function editItemObj(fbID) {
     let itemObj = {
         itemMake: $(`#${fbID}itemMake-input`).val(),
         itemModel: $(`#${fbID}itemModel-input`).val(),
