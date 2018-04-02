@@ -100,12 +100,8 @@ function makeUserItemList(allItems) {
                                     <h4 class="list-headline">${currentItem.itemMake} ${currentItem.itemModel}</h4>
                                     <button id="${item}-infobtn" class="info-btn btn  btn btn-outline-secondary" data-toggle="modal" data-target="#${item}-infoModal">More Info</button>
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add To Camera Bag</button>
-                                        <div class="dropdown-menu" id="${item}" aria-labelledby="dropdownMenuButton">
-                                            
-                                        </div>
+                                        <button class="btn btn-outline-secondary dropdown-toggle user-item-drop" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add To Camera Bag</button> 
                                     </div>
-                                    
                                 </div>
                             </div>
 
@@ -125,11 +121,11 @@ function makeUserItemList(allItems) {
                                     <div class="modal-body">
                                         <div>
                                         <img src="${currentItem.itemImageURL}" class="modal-image" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
-                                        <a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a>
-                                        <h5 class="infoModal-h5">User Notes</h5>
-                                        <p>${currentItem.userNotes}
+                                        <h5 class="infoModal-h5">My Notes</h5>
+                                        <p>${currentItem.itemNotes}
                                         <h5 class="infoModal-h5">Item Description</h5>
                                         <p>${currentItem.itemDescription}:</p></div>
+                                        <h5>Product Manual</h5><p><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Manual</a></p>
                                         
                                     </div>
                                         
@@ -210,13 +206,11 @@ function makeBagList(bags) {
         let currentBag = bags[bag];
         let bagCardDiv = `<div class="itemCard-wrap">
                                 <div id="${bag}-card" class="bagCard">
-                                <img src="/img/my-camera-bag-logo-sm.png" class="bagCardLogo" alt="camera bag image">
+                                    <img src="/img/my-camera-bag-logo-sm.png" class="bagCardLogo" alt="camera bag image">
                                     <h4 class="bag-headline">${currentBag.title}</h4>
-                                    <p class="bagCardContents">Bag Card Contents Here: </p>
-                                    <div class="bagCardFooter">
-                                        <button id="${bag}" class="my-bag-items btn btn-outline-secondary">View Bag Items</button><br>
-                                        <button id="${bag}-infobtn" class="info-btn btn  btn btn-outline-secondary" data-toggle="modal" data-target="#${bag}-infoModal">More Info</button>
-                                    </div>
+                                    <p class="bagCardContents">Bag Card Contents Here.. </p>
+                                    <button id="${bag}" class="my-bag-items-btn btn btn-outline-secondary">View Bag Items</button><br>
+                                    <button id="${bag}-infobtn" class="my-bag-info-btn btn btn-outline-secondary" data-toggle="modal" data-target="#${bag}-infoModal">More Info</button>
                                 </div>
                             </div>
 
@@ -314,13 +308,15 @@ function fillCreateUserItemDiv() {
                                         </button>
                                     </div>
                                     <form id="createUserItemModal" class="modal-body">
-                                        <label>Item Make:</label><input type="text" name="item-Make" id="itemMake-input"><br>
-                                        <label>Item Model:</label><input type="text" name="item-Model" id="itemModel-input"><br>
-                                        <label>Item Category</label><input type="text" name="item-Category" id="itemCat-input"><br>
-                                        <label>Item SubCategory:</label><input type="text" name="item-SubCategory" id="itemSub-input"><br>
-                                        <label>Item Image URL:</label><input type="text" name="imageURL" id="imageURL-input"><br>
-                                        <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="manual-input"><br>
-                                        <label>Item Description:</label><input type="text" name="item-Description" id="desc-input"><br>
+                                        <label>Item Make:</label><input type="text" name="item-Make" id="userItemMake-input"><br>
+                                        <label>Item Model:</label><input type="text" name="item-Model" id="userItemModel-input"><br>
+                                        <label>Item Category</label><input type="text" name="item-Category" id="userItemCat-input"><br>
+                                        <label>Item SubCategory:</label><input type="text" name="item-SubCategory" id="userItemSub-input"><br>
+                                        <label>Item Image URL:</label><input type="text" name="imageURL" id="userImageURL-input"><br>
+                                        <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="userManual-input"><br>
+                                        <label>Item Description:</label><input type="text" name="item-Description" id="userDesc-input"><br>
+                                        <label>Item Condition:</label><input type="text" name="item-Condition" id="itemCond-input"><br>
+                                        <label>Notes:</label><input type="text" name="item-Description" id="userItemNotes-input"><br>
 
                                     </form>
                                     <div class="modal-footer">

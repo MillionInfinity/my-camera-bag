@@ -81,16 +81,14 @@ $(document).on("click", "#user-bags-btn", function () {
 
 //CREATE ITEM AND ADD TO MASTER IVENTORY LISTENER
 $(document).on("click", "#submitItemBtn", function () {
-    console.log("create new item clicked");
     let itemObj = buildItemObj();
-    console.log("itemObj", itemObj);
     db.addItem(itemObj);
 });
 
 
 //CREATE USER ITEM LISTENER
 $(document).on("click", "#submitUserItemBtn", function () {
-    let userItemObj = editUserItemObj(user.getUser());
+    let userItemObj = createUserItemObj(user.getUser());
     db.addUserItem(userItemObj);
 });
 
@@ -189,6 +187,24 @@ function buildUserItemObj(uid, item) {
     return userItemObj;
 }
 
+function createUserItemObj(uid) {
+    let userItemObj = {
+        itemMake: $(`#userItemMake-input`).val(),
+        itemModel: $(`#userItemModel-input`).val(),
+        itemCategory: $(`#userItemCat-input`).val(),
+        itemSubCategory: $(`#userItemSub-input`).val(),
+        itemImageURL: $(`#userImageURL-input`).val(),
+        buyNewURL: $(`#userBuyNew-input`).val(),
+        manualURL: $(`#userManual-input`).val(),
+        itemDescription: $(`#userDesc-input`).val(),
+        itemCondition: $(`#itemCond-input`).val(),
+        itemNotes: $(`#userItemNotes-input`).val(),
+        uid: uid ? uid : ""
+    };
+    console.log("createUserItemObj userItemObj", userItemObj);
+    return userItemObj;
+}
+
 function editUserItemObj(uid, fbID) {
     let userItemObj = {
         itemMake: $(`#${fbID}itemMake-input`).val(),
@@ -203,7 +219,7 @@ function editUserItemObj(uid, fbID) {
         itemNotes: $(`#${fbID}notes-input`).val(),
         uid: uid ? uid : ""
     };
-    console.log("createUserItemObj userItemObj", userItemObj);
+    console.log("editUserItemObj userItemObj", userItemObj);
     return userItemObj;
 }
 
