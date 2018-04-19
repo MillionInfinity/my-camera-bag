@@ -21,6 +21,7 @@ function loadAllItemsToDOM() {
 loadAllItemsToDOM();
 
 
+
 //LOAD USER ITEMS TO DOM
 function loadUserItemsToDOM() {
     templates.clearGearDiv();
@@ -79,7 +80,7 @@ $(document).on("click", "#user-bags-btn", function () {
 
 
 //CREATE ITEM AND ADD TO MASTER IVENTORY LISTENER
-$(document).on("click", ".save_new_btn", function () {
+$(document).on("click", "#submitItemBtn", function () {
     let itemObj = buildItemObj();
     db.addItem(itemObj);
 });
@@ -87,7 +88,7 @@ $(document).on("click", ".save_new_btn", function () {
 
 //CREATE USER ITEM LISTENER
 $(document).on("click", "#submitUserItemBtn", function () {
-    let userItemObj = editUserItemObj(user.getUser());
+    let userItemObj = createUserItemObj(user.getUser());
     db.addUserItem(userItemObj);
 });
 
@@ -108,7 +109,7 @@ $(document).on("click", ".addItem-btn", function () {
 
 //EDIT ITEM BUTTON LISTENER
 $(document).on("click", ".submitEdit-btn", function() {
-    let itemObj = buildItemObj(this.id);
+    let itemObj = editItemObj(this.id);
     console.log("itemObj", itemObj);
     db.editItem(itemObj, this.id);
 });
@@ -139,7 +140,23 @@ $(document).on("click", ".deleteUserItem-btn", function () {
 });
 
 
-function buildItemObj(fbID) {
+//Create New Item
+function buildItemObj() {
+    let itemObj = {
+        itemMake: $(`#itemMake-input`).val(),
+        itemModel: $(`#itemModel-input`).val(),
+        itemCategory: $(`#itemCat-input`).val(),
+        itemSubCategory: $(`#itemSub-input`).val(),
+        itemImageURL: $(`#itemImageURL-input`).val(),
+        buyNewURL: $(`#buyNew-input`).val(),
+        manualURL: $(`#manual-input`).val(),
+        itemDescription: $(`#desc-input`).val()
+    };
+    return itemObj;
+}
+
+//Create Edited Item Object
+function editItemObj(fbID) {
     let itemObj = {
         itemMake: $(`#${fbID}itemMake-input`).val(),
         itemModel: $(`#${fbID}itemModel-input`).val(),
@@ -170,6 +187,24 @@ function buildUserItemObj(uid, item) {
     return userItemObj;
 }
 
+function createUserItemObj(uid) {
+    let userItemObj = {
+        itemMake: $(`#userItemMake-input`).val(),
+        itemModel: $(`#userItemModel-input`).val(),
+        itemCategory: $(`#userItemCat-input`).val(),
+        itemSubCategory: $(`#userItemSub-input`).val(),
+        itemImageURL: $(`#userImageURL-input`).val(),
+        buyNewURL: $(`#userBuyNew-input`).val(),
+        manualURL: $(`#userManual-input`).val(),
+        itemDescription: $(`#userDesc-input`).val(),
+        itemCondition: $(`#itemCond-input`).val(),
+        itemNotes: $(`#userItemNotes-input`).val(),
+        uid: uid ? uid : ""
+    };
+    console.log("createUserItemObj userItemObj", userItemObj);
+    return userItemObj;
+}
+
 function editUserItemObj(uid, fbID) {
     let userItemObj = {
         itemMake: $(`#${fbID}itemMake-input`).val(),
@@ -184,7 +219,7 @@ function editUserItemObj(uid, fbID) {
         itemNotes: $(`#${fbID}notes-input`).val(),
         uid: uid ? uid : ""
     };
-    console.log("createUserItemObj userItemObj", userItemObj);
+    console.log("editUserItemObj userItemObj", userItemObj);
     return userItemObj;
 }
 

@@ -45,7 +45,7 @@ function makeItemList(allItems) {
                                     </div>
                                         
                                     <div class="modal-footer">
-                                        <a type="button" class="buy-btn" href="${currentItem.buyNewURL}" "target="_blank">Buy New</a>
+                                        <a type="button" class="btn btn-default buy-btn" href="${currentItem.buyNewURL}" "target="_blank">Buy New</a>
                                         <button type="button" id="${item}" class="btn btn-danger deleteItem-btn" data-dismiss="modal">Delete</button>
                                         <button id="${item}" data-toggle="modal" data-target="#${item}-editItemModal" class="btn btn-success">Edit Item</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -100,12 +100,8 @@ function makeUserItemList(allItems) {
                                     <h4 class="list-headline">${currentItem.itemMake} ${currentItem.itemModel}</h4>
                                     <button id="${item}-infobtn" class="info-btn btn  btn btn-outline-secondary" data-toggle="modal" data-target="#${item}-infoModal">More Info</button>
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add To Camera Bag</button>
-                                        <div class="dropdown-menu" id="${item}" aria-labelledby="dropdownMenuButton">
-                                            
-                                        </div>
+                                        <button class="btn btn-outline-secondary dropdown-toggle user-item-drop" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add To Camera Bag</button> 
                                     </div>
-                                    
                                 </div>
                             </div>
 
@@ -125,11 +121,11 @@ function makeUserItemList(allItems) {
                                     <div class="modal-body">
                                         <div>
                                         <img src="${currentItem.itemImageURL}" class="modal-image" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
-                                        <a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a>
-                                        <h5 class="infoModal-h5">User Notes</h5>
-                                        <p>${currentItem.userNotes}
+                                        <h5 class="infoModal-h5">My Notes</h5>
+                                        <p>${currentItem.itemNotes}
                                         <h5 class="infoModal-h5">Item Description</h5>
                                         <p>${currentItem.itemDescription}:</p></div>
+                                        <h5>Product Manual</h5><p><a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Manual</a></p>
                                         
                                     </div>
                                         
@@ -200,9 +196,9 @@ function makeUserItemList(allItems) {
 
         $("#gear-div").append(userItemCardDiv);
     }
-
 }
-{/* <button id="${item}" class="addToBag-btn btn btn-outline-secondary" data-toggle="modal" data-target="#${item}addToBagModal">Add to Camera Bag</button> */}
+
+/* <button id="${item}" class="addToBag-btn btn btn-outline-secondary" data-toggle="modal" data-target="#${item}addToBagModal">Add to Camera Bag</button> */
 
 function makeBagList(bags) {
     console.log("bags", bags);
@@ -210,13 +206,11 @@ function makeBagList(bags) {
         let currentBag = bags[bag];
         let bagCardDiv = `<div class="itemCard-wrap">
                                 <div id="${bag}-card" class="bagCard">
-                                <img src="/img/my-camera-bag-logo-sm.png" class="bagCardLogo" alt="camera bag image">
+                                    <img src="/img/my-camera-bag-logo-sm.png" class="bagCardLogo" alt="camera bag image">
                                     <h4 class="bag-headline">${currentBag.title}</h4>
-                                    <p class="bagCardContents">Bag Card Contents Here: </p>
-                                    <div class="bagCardFooter">
-                                        <button id="${bag}" class="my-bag-items btn btn-outline-secondary">View Bag Items</button><br>
-                                        <button id="${bag}-infobtn" class="info-btn btn  btn btn-outline-secondary" data-toggle="modal" data-target="#${bag}-infoModal">More Info</button>
-                                    </div>
+                                    <p class="bagCardContents">Bag Card Contents Here.. </p>
+                                    <button id="${bag}" class="my-bag-items-btn btn btn-outline-secondary">View Bag Items</button><br>
+                                    <button id="${bag}-infobtn" class="my-bag-info-btn btn btn-outline-secondary" data-toggle="modal" data-target="#${bag}-infoModal">More Info</button>
                                 </div>
                             </div>
 
@@ -314,13 +308,15 @@ function fillCreateUserItemDiv() {
                                         </button>
                                     </div>
                                     <form id="createUserItemModal" class="modal-body">
-                                        <label>Item Make:</label><input type="text" name="item-Make" id="itemMake-input"><br>
-                                        <label>Item Model:</label><input type="text" name="item-Model" id="itemModel-input"><br>
-                                        <label>Item Category</label><input type="text" name="item-Category" id="itemCat-input"><br>
-                                        <label>Item SubCategory:</label><input type="text" name="item-SubCategory" id="itemSub-input"><br>
-                                        <label>Item Image URL:</label><input type="text" name="imageURL" id="imageURL-input"><br>
-                                        <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="manual-input"><br>
-                                        <label>Item Description:</label><input type="text" name="item-Description" id="desc-input"><br>
+                                        <label>Item Make:</label><input type="text" name="item-Make" id="userItemMake-input"><br>
+                                        <label>Item Model:</label><input type="text" name="item-Model" id="userItemModel-input"><br>
+                                        <label>Item Category</label><input type="text" name="item-Category" id="userItemCat-input"><br>
+                                        <label>Item SubCategory:</label><input type="text" name="item-SubCategory" id="userItemSub-input"><br>
+                                        <label>Item Image URL:</label><input type="text" name="imageURL" id="userImageURL-input"><br>
+                                        <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="userManual-input"><br>
+                                        <label>Item Description:</label><input type="text" name="item-Description" id="userDesc-input"><br>
+                                        <label>Item Condition:</label><input type="text" name="item-Condition" id="itemCond-input"><br>
+                                        <label>Notes:</label><input type="text" name="item-Description" id="userItemNotes-input"><br>
 
                                     </form>
                                     <div class="modal-footer">
@@ -398,9 +394,7 @@ function fillCreateItemDiv() {
                                         <label>Item SubCategory:</label><input type="text" name="item-SubCategory" id="itemSub-input"><br>
                                         <label>Item Image URL:</label><input type="text" name="imageURL" id="imageURL-input"><br>
                                         <label>Item Manual/Instructions URL:</label><input type="text" name="manualURL" id="manual-input"><br>
-                                        <label>Item Description:</label><input type="text" name="item-Description" id="desc-input"><br>
-                                        <label>Your Notes:</label><input type="text" name="user-Notes" id="notes-input">
-
+                                        <label>Item Description:</label><input type="text" name="item-Description" id="desc-input">
                                     </form>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -450,79 +444,4 @@ function makeUserBagDropdown(uid, itemID) {
         });
 }
 
-
-// function buildUserItemPage(item) {
-//     let userItemPage;
-//     for (let item in allItems) {
-//         let currentItem = allItems[item];
-//         userItemPage =
-//                 `<div class="div-content">
-//                     <div class="div-header">
-//                         <div>
-//                             <h4>${currentItem.itemMake} ${currentItem.itemModel}</h4>
-//                             <small>Item Category: ${currentItem.itemCategory}: ${currentItem.itemSubCategory}</small>
-//                         </div>
-//                     </div>
-//                     <div class="div-body">
-//                         <div>
-//                             <img src="${currentItem.itemImageURL}" class="modal-image" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
-//                             <a href="${currentItem.itemManualURL}">${currentItem.itemMake} ${currentItem.itemModel} Product Manual</a>
-//                             <h5>User Notes</h5>
-//                             <p>${currentItem.userNotes}</p>
-//                             <h5>Item Description</h5>
-//                             <p>${currentItem.itemDescription}:</p>
-//                             <button type="button" id="${item}" class="btn btn-danger deleteUserItem-btn" data-dismiss="modal">Delete Item</button>
-//                         </div>
-//                     </div>
-//                 </div>`;
-
-//     }
-// }
 module.exports = { makeItemList, fillHomeIntro, fillCreateItemDiv, userItemForm, makeUserItemList, fillMyBagsIntro, fillMyGearIntro, fillCreateUserItemDiv, clearGearDiv, fillCreateBagDiv, makeBagList };
-
-// function makeModalUserItemList(items) {
-//     let itemCardDiv = "";
-//     for (let item in items) {
-//         let currentItem = items[item];
-//         itemCardDiv += `<div class="itemCard-wrap">
-//                                 <div id="${item}-card" class="itemCard">
-//                                     <img src="${currentItem.itemImageURL}" class="listImage" alt="${currentItem.itemMake} ${currentItem.itemModel} image">
-//                                     <h4 class="list-headline">${currentItem.itemMake} ${currentItem.itemModel}</h4>
-//                                     <button id="${item}" class="addToBag-btn btn btn-outline-secondary">Add Item To Camera Bag</button>
-//                                     <button id="${item}-infobtn" class="info-btn btn btn-outline-secondary" data-toggle="modal" data-target="#${item}-userInfoModal">More</button>
-//                                 </div>
-//                             </div>
-
-//                         <!-- Modal -->
-//                             <div class="modal fade modalStyle" id="${item}-userInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-//                             <div class="modal-dialog" role="document">
-//                                 <div class="modal-content">
-//                                     <div class="modal-header">
-//                                         <h5 class="modal-title" id="exampleModalLabel">Edit Your Item</h5>
-//                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-//                                             <span aria-hidden="true">&times;</span>
-//                                         </button>
-//                                     </div>
-//                                         <form id="userItemModalForm" class="modal-body">
-
-//                                             <label>Item Make:</label><input type="text" class="modal-input" name="${currentItem.itemMake}" value="${currentItem.itemMake}" id="itemMake-input"><br>
-//                                             <label>Item Model:</label><input type="text" class="modal-input" name="${currentItem.itemModel}" value="${currentItem.itemModel}"id="itemModel-input"><br>
-//                                             <label>Item Category</label><input type="text" class="modal-input" name="${currentItem.itemCategory}" value="${currentItem.itemCategory}" id="itemCat-input"><br>
-//                                             <label>Item SubCategory:</label><input type="text" class="modal-input" name="${currentItem.itemSubCategory}" value="${currentItem.itemSubCategory}" id="itemSub-input"><br>
-//                                             <label>Item Manual/Instructions URL:</label><input type="text" class="modal-input" name="${currentItem.itemManualURL}" value="${currentItem.itemManualURL}" id="manual-input"><br>
-//                                             <label>Item Description:</label><input type="text" class="modal-input" name="${currentItem.itemDescription}" value="${currentItem.itemDescription}" id="desc-input"><br>
-//                                             <label>User Notes:</label><input type="text" class="modal-input" name="user-notes" id="desc-input"><br>
-
-//                                         </form>
-//                                     <div class="modal-footer">
-//                                         <button type="button" id="${item}" class="btn btn-danger deleteUserItem-btn">Delete Item</button>
-//                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-//                                         <button type="submit" id="submitItemBtn" class="btn btn-primary save_new_btn" data-dismiss="modal">Save Changes</button>
-//                                     </div>
-//                                 </div>
-//                             </div>
-//                         </div>`;
-
-//         $("#gear-div").html(itemCardDiv);
-//     }
-// }

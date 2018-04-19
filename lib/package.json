@@ -1,14 +1,14 @@
 {
     "name": "base-install",
     "version": "1.0.0",
-    "description": "This is a boilerplate for web projects developed by Dan Watson",
+    "description": "My Camera Bags is a website for photographers to organize their photography equipment.",
     "main": "index.js",
     "author": "Dan Watson",
     "license": "MIT",
     "homepage": "https://github.com/danwatson00",
     "repository": {
         "type": "git",
-        "url": "https://github.com/"
+        "url": "https://github.com/danwatson00/my-camera-bag"
     },
     "bugs": {
         "url": ""
