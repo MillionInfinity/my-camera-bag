@@ -1,19 +1,6 @@
 // Google Fonts
-@import url('https://fonts.googleapis.com/css?family=Lato|Roboto:300');
-
-
-// Color Variables
-$colorA: #3D5A80;
-$colorB: #98C1D9;
-$colorC: #E0FBFC;
-$colorD: #EE6C4D;
-$colorE: #293241;
-$colorF: white;
-$black: black;
-
-//Font Variables
-$font1: "Roboto", san-serif;
-$font2: "Lato", san-serif;
+@import 'colors';
+@import 'fonts';
 
 //Basic Styling
 
@@ -271,6 +258,17 @@ a.buy-btn {
     color: $colorF;
     padding: 8px;
 }
+
+.modalStyle {
+    color: $colorE;
+}
+
+form label {
+    padding: 15px 0 0 0;
+    font-family: $font2;
+    margin: 0;
+}
+
 //Create Item Div
 
 #createItemDiv {
@@ -286,10 +284,7 @@ a.buy-btn {
     width: 100%;
 }
 
-form label {
-    padding: 10px 0 0 0;
-    font-family: $font2;
-}
+
 
 //button to create item
 #createItem-btn {
@@ -316,14 +311,6 @@ form label {
     justify-self: center;
     font-family: $font2;
 }
-
-//Modal
-
-.modalStyle {
-    color: $colorE;
-}
-
-
 
 //Bag Card Styling
 
